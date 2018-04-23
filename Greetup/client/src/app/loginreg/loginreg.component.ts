@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
+import { ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-loginreg',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginregComponent implements OnInit {
 
-  constructor() { }
+  regUser = { name: "", email: "", password: "" };
+  error;
+
+  constructor(private _httpService: HttpService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
+  registerUser(): void {
+    // this._httpService.registerUser(this.regUser).then()
+  }
 }

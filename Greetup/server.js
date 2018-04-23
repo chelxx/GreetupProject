@@ -56,7 +56,7 @@ var UserSchema = new mongoose.Schema({
             message: "Password must have at least 1 number, 1 uppercase and 1 special character."
         }
     }
-})
+}, {timestamps:true});
 
 mongoose.model('User', UserSchema);
 var User = mongoose.model('User');
@@ -70,7 +70,9 @@ UserSchema.pre('save', function(next){
 
 // ******************** //
 // START OF ROUTES
-app.post('/registeruser', function (req, res) {
+
+// REGISTER USER
+app.post('/api/registeruser', function (req, res) {
     User.find({email: req.body.email}, function(err,user){
         if(user == 0)
         {
@@ -107,7 +109,8 @@ app.post('/registeruser', function (req, res) {
     })
 })
 
-app.post('/loginuser', function (req, res) {
+// LOGIN USER
+app.post('/api/loginuser', function (req, res) {
     User.findOne({email: req.body.loginemail}).exec(function(err, user){
         console.log(req.body.loginemail);
         if(err){
@@ -140,9 +143,11 @@ app.post('/loginuser', function (req, res) {
     })
 })
 
-app.post('/logout', function (req, res) {
+// LOGOUT USER
+app.post('/api/logout', function (req, res) {
     // NEEDS WORK!!!!
 })
+
 // END OF ROUTES
 // ******************** //
 

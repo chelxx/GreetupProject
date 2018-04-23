@@ -1,3 +1,50 @@
-<p>
-  loginreg works!
-</p>
+<h3>REGISTER:</h3>
+
+<form (submit)="registerUser()" #regUser="ngForm">
+  <label>Name:</label>
+  <input 
+  type="text"
+  name="email"
+  class="form-control"
+  required
+  minlength="3"
+  pattern="^\s*[a-zA-Z,\s]+\s*$"
+  [(ngModel)]="regUser.name"
+  #regName="ngModel"
+  />
+  <label>Email:</label>
+  <input 
+  type="email"
+  name="email"
+  class="form-control"
+  required
+  minlength="3"
+  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+  [(ngModel)]="regUser.email"
+  #regEmail="ngModel"
+  />
+  <label>Password:</label>
+  <input 
+  type="password"
+  name="password"
+  class="form-control"
+  required
+  minlength="8"
+  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+  [(ngModel)]="regUser.password"
+  #regPassword="ngModel"
+  />
+  <label>Confirm Password:</label>
+  <input 
+  type="password"
+  name="confirm_pw"
+  class="form-control"
+  required
+  minlength="8"
+  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$"
+  [(ngModel)]="regUser.confirm_pw"
+  #regConfirmPW="ngModel"
+  />
+  <button class="form-control" type="submit">REGISTER</button>
+
+</form>
