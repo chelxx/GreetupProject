@@ -1,10 +1,12 @@
 <h3>REGISTER:</h3>
 
-<form (submit)="registerUser()" #regUser="ngForm">
+<form (submit)="registerUser()" #regUserForm="ngForm">
+
+  <!-- REGISTER NAME -->
   <label>Name:</label>
   <input 
   type="text"
-  name="email"
+  name="name"
   class="form-control"
   required
   minlength="3"
@@ -12,6 +14,16 @@
   [(ngModel)]="regUser.name"
   #regName="ngModel"
   />
+  <div *ngIf="!regName.valid">
+    <p *ngIf="regName.errors.required" class="error">Name is required.</p>
+    <p *ngIf="regName.errors.minlength" class="error">Name must be at least 3 characters.</p>
+    <p *ngIf="regName.errors.pattern" class="error">Name cannot contain any numbers or special characters.</p> 
+  </div>
+  <div *ngIf="regName.valid">
+    <p class="success">Nice! You're good to go!</p>
+  </div>
+
+  <!-- REGISTER EMAIL -->
   <label>Email:</label>
   <input 
   type="email"
@@ -23,6 +35,16 @@
   [(ngModel)]="regUser.email"
   #regEmail="ngModel"
   />
+  <div *ngIf="!regEmail.valid">
+    <p *ngIf="regEmail.errors.required" class="error">Email is required.</p>
+    <p *ngIf="regEmail.errors.minlength" class="error">Email must be at least 3 characters.</p>
+    <p *ngIf="regEmail.errors.pattern" class="error">Invalid Email Address!</p> 
+  </div>
+  <div *ngIf="regEmail.valid">
+    <p class="success">Nice! You're good to go!</p>
+  </div>
+
+  <!-- REGISTER PW -->
   <label>Password:</label>
   <input 
   type="password"
@@ -30,21 +52,41 @@
   class="form-control"
   required
   minlength="8"
-  pattern="^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
+  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$"
   [(ngModel)]="regUser.password"
   #regPassword="ngModel"
   />
+  <div *ngIf="!regPassword.valid">
+    <p *ngIf="regPassword.errors.required" class="error">Password is required.</p>
+    <p *ngIf="regPassword.errors.minlength" class="error">Password must be at least 8 characters.</p>
+    <p *ngIf="regPassword.errors.pattern" class="error">Password requires at least 8 characters, 1 uppercase letter, 1 lowercase letter, and 1 number.</p> 
+  </div>
+  <div *ngIf="regPassword.valid">
+    <p class="success">Nice! You're good to go!</p>
+  </div>
+
+  <!-- REGISTER CONFIRM PW -->
   <label>Confirm Password:</label>
   <input 
   type="password"
   name="confirm_pw"
   class="form-control"
   required
-  minlength="8"
   pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$"
   [(ngModel)]="regUser.confirm_pw"
   #regConfirmPW="ngModel"
   />
-  <button class="form-control" type="submit">REGISTER</button>
+  <div *ngIf="!regConfirmPW.valid">
+      <p *ngIf="regConfirmPW.errors.required" class="error">Password is required.</p>
+  </div>
+  <div *ngIf="regPassword != regConfirmPW">
+    <p class="error">Passwords do not match!</p>
+  </div>
+  <div *ngIf="regPassword == regConfirmPW">
+    <p class="success">Nice! Passwords match!</p>
+  </div>
+
+  <!-- SUBMIT BUTTON -->
+  <button class="form-control btn btn-info" type="submit" [disabled]="!regUserForm.valid">REGISTER</button>
 
 </form>
