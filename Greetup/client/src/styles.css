@@ -4,3 +4,23 @@
 .success {
     color: yellowgreen;
 }
+div#userForm {
+    text-align: center;
+    margin: 0 auto;
+}
+button.btn {
+    background-color: rgb(233, 69, 137);
+    border: none;    
+    color: white;
+}
+button:hover {
+    background-color: rgb(233, 32, 115);
+    border: none;
+    color: white;
+}
+button:disabled, button[disabled] {
+    background-color: rgb(207, 121, 157);
+    border: none;    
+    color: white;
+    
+}

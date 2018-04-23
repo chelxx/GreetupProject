@@ -9,12 +9,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginregComponent } from './loginreg/loginreg.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginregComponent
+    LoginregComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

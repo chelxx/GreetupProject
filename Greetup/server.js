@@ -24,13 +24,13 @@ var Schema = mongoose.Schema;
 var UserSchema = new mongoose.Schema({
     name: { 
         type: String, 
-        required: [true, "First Name is required!"], 
-        minlength: [2, "First Name must be longer than 2 characters!"],
+        required: [true, "Name is required!"], 
+        minlength: [2, "Name must be longer than 2 characters!"],
         validate: {
-            validator: function(fname){
-                return /^[a-z ,.'-]+$/i.test(name);
+            validator: function(name){
+                return /^\s*[a-zA-Z,\s]+\s*$/.test(name);
             },
-            message: "First Name cannot contain any special characters!"
+            message: "Name cannot contain any special characters!"
         }
     },
     email: { 
@@ -39,7 +39,7 @@ var UserSchema = new mongoose.Schema({
         unique: [true, "Email already exists!"], 
         validate: {
             validator: function(email){
-                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+                return /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)
             },
             message: "Invalid Email Address!"
         }
@@ -51,9 +51,9 @@ var UserSchema = new mongoose.Schema({
         maxlength: [32, "Password cannot be longer than 32 characters!"],
         validate: {
             validator: function(pw){
-                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,32}/.test(pw);
+                return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$/.test(pw);
             },
-            message: "Password must have at least 1 number, 1 uppercase and 1 special character."
+            message: "Password must have at least 1 number, 1 uppercase and 1 lowercase."
         }
     }
 }, {timestamps:true});
@@ -76,10 +76,10 @@ app.post('/api/registeruser', function (req, res) {
     User.find({email: req.body.email}, function(err,user){
         if(user == 0)
         {
-            console.log("user is null!")
+            console.log("SERVER! USER IS NULL!")
             if(req.body.password == req.body.confirm_pw){
-                console.log("**passwords:", req.body.password, req.body.confirm_pw); // BOTH ARE UNDEFINED? THE FUCK THO
-                console.log("passwords match!");        
+                console.log("FORM PASSWORDS:", req.body.password, req.body.confirm_pw);
+                console.log("SERVER! PASSWORDS MATCH!");        
                 var user = new User ({
                     name: req.body.name,
                     email: req.body.email,
@@ -114,15 +114,15 @@ app.post('/api/loginuser', function (req, res) {
     User.findOne({email: req.body.loginemail}).exec(function(err, user){
         console.log(req.body.loginemail);
         if(err){
-            console.log("SERVER! INVALID EMAIL ADDRESS!");
+            console.log("SERVER! LOGIN INVALID EMAIL ADDRESS!");
             res.json({message: "Success", error: err});
         }
         if(user == null) {
-            console.log("SERVER! EMAIL ADDRESS DOES NOT EXIST!");
+            console.log("SERVER! LOGIN EMAIL ADDRESS DOES NOT EXIST!");
             res.json({message: "Success", error: err});
         }
         else {
-            console.log("SERVER! VALID EMAIL ADDRESS!");
+            console.log("SERVER! VALID LOGIN EMAIL ADDRESS!");
             console.log(req.body.loginpassword, user.password);
             bcrypt.compare(req.body.loginpassword, user.password).then(results => {
                 if(results == true)
@@ -136,7 +136,7 @@ app.post('/api/loginuser', function (req, res) {
                 }
             })
             .catch(err =>  {
-                console.log("SERVER! INCORRECT PASSWORD!");
+                console.log("SERVER! INCORRECT LOGIN PASSWORD!");
                 res.json({message: "Error", error: err});
             })
         }

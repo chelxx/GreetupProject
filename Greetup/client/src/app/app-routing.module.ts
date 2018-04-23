@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 // IMPORT ROUTING HERE
 import { LoginregComponent } from './loginreg/loginreg.component';
+import { HomeComponent } from './home/home.component';
 // END IMPORT ROUTING
 
 const routes: Routes = [
-  {path: 'home',component:LoginregComponent},
+  {path: 'home',component: HomeComponent},
+  {path: 'loginreg',component: LoginregComponent},
   { path: '', pathMatch:'full', component: LoginregComponent}
 ];
 
