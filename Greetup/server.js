@@ -1,4 +1,4 @@
-var bcrypt = require("bcrypt-as-promised");
+var bcrypt = require("bcrypt");
 var session = require("express-session");
 var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
