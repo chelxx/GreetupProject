@@ -10,8 +10,10 @@ import { ActivatedRoute, Params, Router} from '@angular/router';
 export class LoginregComponent implements OnInit {
 
   regUser = { name: "", email: "", password: "" };
-  logUser = { email: "", password: "" };
-  error;
+  logUser = { loginemail: "", loginpassword: "" };
+  loginpassworderror;
+  registerpassworderror;
+  registeremailerror;
 
   constructor(private _httpService: HttpService, private _router: Router, private _route: ActivatedRoute) { }
 
@@ -28,8 +30,15 @@ export class LoginregComponent implements OnInit {
       }
       else {
         console.log("LOGINREG-COMP! REGISTER ERROR!");
-        this.error = data['error']['message'];
-        console.log("REGISTER FORM ERROR:", this.error)
+        if(data['message'] == "Passwords do not match!")
+        {
+          this.registerpassworderror = data['message'];
+        }
+        if(data['message'] == "Email already exists!")
+        {
+          this.registeremailerror = data['message'];
+        }
+        console.log("REGISTER FORM ERROR:", this.registerpassworderror)
       }
     })
   }
@@ -39,13 +48,13 @@ export class LoginregComponent implements OnInit {
     this._httpService.loginUser(this.logUser).then(data => {
       if(data['message'] == "Success") {
         console.log("LOGINREG-COMP! LOGIN SUCCESS!");
-        this.logUser = { email: "", password: "" }
+        this.logUser = { loginemail: "", loginpassword: "" }
         this._router.navigate(['/home']);
       }
       else {
         console.log("LOGINREG-COMP! LOGIN ERROR!");
-        this.error = data['error'];
-        console.log("LOGIN FORM ERROR:", this.error)
+        this.loginpassworderror = data['message'];
+        console.log("LOGIN FORM ERROR:", this.loginpassworderror)
       }
     })
   }

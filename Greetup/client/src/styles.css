@@ -4,25 +4,41 @@
 .success {
     color: yellowgreen;
 }
+.logo {
+    height: 50px;
+}
 
 /* LOGIN/REG COMPONENT */
 div#userForm {
+    align-content: center;
+    margin: 0 auto;
+}
+div#userForm h3{
     text-align: center;
     margin: 0 auto;
 }
-button.btn {
-    background-color: rgb(233, 69, 137);
+div#userForm label {
+    text-align: left;
+}
+div#userForm input {
+    border-radius: 5px;
+}
+button.btn.btn-info {
+    background-color: rgb(223, 17, 103);
+    border-radius: 5px;    
     border: none;    
     color: white;
 }
-button:hover {
-    background-color: rgb(233, 32, 115);
+button:hover.btn.btn-info {
+    transform: scale(1.05);
+    border-radius: 5px;    
     border: none;
     color: white;
 }
-button:disabled, button[disabled] {
+button:disabled.disabled, button[disabled].disabled {
     background-color: rgb(207, 121, 157);
+    border-radius: 5px;    
     border: none;    
-    color: white;   
+    color: rgb(106, 49, 73); 
 }
 /* END OF LOGINREG COMPONENT */

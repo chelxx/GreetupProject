@@ -12,8 +12,8 @@ export class HttpService {
     console.log("SERVICE! REGISTER USER!");
     return this._http.post('/api/registeruser', regUser).map(data => data).toPromise();
   }
-  loginUser(loginUser) {
-    console.log("SERVICE! LOGIN USER!");
-    return this._http.post('/api/loginuser', loginUser).map(data => data).toPromise();
+  loginUser(logUser) {
+    console.log("SERVICE! LOGIN USER!", logUser);
+    return this._http.post('/api/loginuser', logUser).map(data => data).toPromise();
   }
 }

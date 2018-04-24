@@ -99,20 +99,21 @@ app.post('/api/registeruser', function (req, res) {
             }
             else {
                 console.log("PASSWORDS DO NOT MATCH!");
-                res.json({message: "Error!"});
+                res.json({message: "Passwords do not match!"});
             }
         }
         else {
-            console.log("SERVER! USER REGISTRATION SUCCESS!");
-            res.json({message: "Success", error: err});
+            console.log("SERVER! USER REGISTRATION ERROR!");
+            res.json({message: "Email already exists!", error: err});
         }
     })
 })
 
 // LOGIN USER
 app.post('/api/loginuser', function (req, res) {
-    User.findOne({email: req.body.loginemail}).exec(function(err, user){
-        console.log("LOGIN EMAIL:",req.body.loginemail);
+    User.findOne({email: req.body.loginemail }).exec(function(err, user){
+        console.log("LOGIN BODY:", req.body );        
+        console.log("LOGIN EMAIL:", req.body.loginemail );
         if(err){
             console.log("SERVER! LOGIN INVALID EMAIL ADDRESS!");
             res.json({message: "Error", error: err});
@@ -123,10 +124,11 @@ app.post('/api/loginuser', function (req, res) {
         }
         else {
             console.log("SERVER! VALID LOGIN EMAIL ADDRESS!");
-            console.log(req.body.loginpassword, user.password);
+            console.log("PASSWORDS:", req.body.loginpassword, user.password);
             bcrypt.compare(req.body.loginpassword, user.password).then(results => {
                 if(results == true)
                 {
+                    console.log(results);
                     console.log("SERVER! PASSWORD LOGIN SUCCESS!");
                     res.json({message: "Success", error: err});
                 }
@@ -137,7 +139,7 @@ app.post('/api/loginuser', function (req, res) {
             })
             .catch(err =>  {
                 console.log("SERVER! INCORRECT LOGIN PASSWORD!");
-                res.json({message: "Error", error: err});
+                res.json({message: "Incorrect Password. Try again!", error: err});
             })
         }
     })
