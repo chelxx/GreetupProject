@@ -112,14 +112,14 @@ app.post('/api/registeruser', function (req, res) {
 // LOGIN USER
 app.post('/api/loginuser', function (req, res) {
     User.findOne({email: req.body.loginemail}).exec(function(err, user){
-        console.log(req.body.loginemail);
+        console.log("LOGIN EMAIL:",req.body.loginemail);
         if(err){
             console.log("SERVER! LOGIN INVALID EMAIL ADDRESS!");
-            res.json({message: "Success", error: err});
+            res.json({message: "Error", error: err});
         }
         if(user == null) {
             console.log("SERVER! LOGIN EMAIL ADDRESS DOES NOT EXIST!");
-            res.json({message: "Success", error: err});
+            res.json({message: "Error", error: err});
         }
         else {
             console.log("SERVER! VALID LOGIN EMAIL ADDRESS!");

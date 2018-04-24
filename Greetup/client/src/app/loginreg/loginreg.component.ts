@@ -44,7 +44,7 @@ export class LoginregComponent implements OnInit {
       }
       else {
         console.log("LOGINREG-COMP! LOGIN ERROR!");
-        this.error = data['error']['message'];
+        this.error = data['error'];
         console.log("LOGIN FORM ERROR:", this.error)
       }
     })
