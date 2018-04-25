@@ -8,6 +8,8 @@ export class HttpService {
 
   constructor(private _http: HttpClient) { }
 
+  // ******************** //
+  // START OF LOGIN/REG SERVICE
   registerUser(regUser) {
     console.log("SERVICE! REGISTER USER!");
     return this._http.post('/api/registeruser', regUser).map(data => data).toPromise();
@@ -16,4 +18,34 @@ export class HttpService {
     console.log("SERVICE! LOGIN USER!", logUser);
     return this._http.post('/api/loginuser', logUser).map(data => data).toPromise();
   }
+  // END OF LOGIN/REG SERVICE
+  // ******************** //
+  // START OF CRUD EVENT SERVICE
+  getEvents() {
+    console.log('got to get events method')
+    return this._http.get('/events');
+  }
+
+  addEvent(newEvent) {
+    return this._http.post('/api/events', newEvent);
+  }
+
+  viewEvent(eventID){
+    return this._http.get(`/api/viewEvent/${eventID}`);
+  }
+
+
+  edit(eventID){
+    return this._http.get(`/api/events/${eventID}`)
+  }
+
+  editEvent(eventID, edEvent){
+    return this._http.put(`/api/editEvent/${eventID}`, edEvent);
+  }
+
+  deleteEvent(eventID){
+    return this._http.delete(`/api/deleteEvent/${eventID}`);
+  }
+  // END OF CRUD EVENT SERVICE
+  // ******************** //
 }

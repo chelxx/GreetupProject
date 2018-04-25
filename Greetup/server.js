@@ -60,6 +60,52 @@ var UserSchema = new mongoose.Schema({
     }
 }, {timestamps:true});
 
+var EventSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: [true, "Events must have a name."],
+        minlength: [3, "Event names must be at least 3 characters long."]
+    },
+    description: {
+        type: String,
+        required: [true, "Describe this Event!"],
+        minlength: [3, "Please describe this event in at least 3 characters."]
+    },
+    street: {
+        type: String,
+        required: [true, "Please include the street for this event."],
+        minlength: [3, "Street address must be at least 3 characters long."]
+    },
+    city: {
+        type: String,
+        required: [true, "Please include the city for this event."],
+        minlength: [3, "City must be at least 3 characters long."]
+    },
+    state: {
+        type: String,
+        required: [true, "Please include the state for this event."],
+        minlength: [2, "Please include a valid state."]
+    },
+    zip: {
+        type: Number,
+        required: [true, "Please include a zip code!"],
+        minlength: [5, "Please include a valid zip code."]
+    },
+    date: {
+        type: Date,
+        required:[true,"Let attendees know when this event is taking palce!"],
+        default: Date.now
+    },
+    likes: {
+        type: Number,
+        default: 0
+    },
+}, { timestamps: true })
+
+
+mongoose.model('Event', EventSchema) // We are setting this Schema in our Models as 'User'
+var Event = mongoose.model('Event')
+
 mongoose.model('User', UserSchema);
 var User = mongoose.model('User');
 
@@ -71,7 +117,7 @@ UserSchema.pre('save', function(next){
 })
 
 // ******************** //
-// START OF ROUTES
+// START OF LOGIN/REG ROUTES
 
 // REGISTER USER
 app.post('/api/registeruser', function (req, res) {
@@ -160,7 +206,82 @@ app.post('/api/logout', function (req, res) {
     res.json({message: "Success"});
 })
 
-// END OF ROUTES
+// END OF LOGIN/REG ROUTES
+// ******************** //
+// START OF CRUD EVENT ROUTES
+
+// 1. Get all events
+app.get('/events', function (req, res) {
+    Event.find().sort({ date:1 }).exec( function (err, events) {
+        if (err) {
+            console.log("Returned Error", err);
+            res.json({ error: err })
+        }
+        else {
+            res.json({ events: events })
+        }
+    });
+})
+
+// 2. Retrieves event by ID
+app.get('/api/viewEvent/:id', function (req, res) {
+    Event.findOne({ _id: req.params.id }, function (err, event) {
+        if (err) {
+            res.json({message: "Error!", error: err })
+        }
+        else {
+            res.json({message: "Success!", event: event })
+        }
+    })
+
+})
+
+// 3. Creates an event
+app.post('/api/events', function (req, res) {
+    var event = new Event({ name: req.body.name, description: req.body.description, street: req.body.street, city: req.body.city, state: req.body.state, zip: req.body.zip, date: req.body.date })
+    console.log("HELLO FROM EVENTS ")
+    event.save(function (err) {
+        if (err) {
+            console.log("in Server.js file")
+            res.json({ message: "Please choose another name, we already have an event with that one!",error: err })
+
+        }
+        else {
+            res.json({ message: "Success!" })
+        }
+    })
+
+})
+
+// 4. Update event by ID
+app.put('/api/editEvent/:id/', function (req, res) {
+
+    Event.findByIdAndUpdate({_id: req.params.id},
+    req.body, {new: true}, function(err, event){
+        if(err){
+            res.json({message: "error", error: err})
+        }
+        else{
+            res.json({message: "Success!", event: event})
+        }
+    })
+ 
+    })
+
+// 5. Delete event by ID
+app.delete('/api/deleteEvent/:id', function (req, res) {
+    Event.remove({ _id: req.params.id }, function (err) {
+        if (err) {
+            res.json({ error: err })
+        }
+        else {
+            res.json({message: "successful delete back"})
+        }
+    })
+
+})
+
+// END OF CRUD EVENT ROUTES
 // ******************** //
 
 app.all("*", (req,res,next) => {

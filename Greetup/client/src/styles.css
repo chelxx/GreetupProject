@@ -7,6 +7,9 @@
 .logo {
     height: 50px;
 }
+div.container-fluid {
+    padding-top: 10px;
+}
 
 /* LOGIN/REG COMPONENT */
 div#userForm {
