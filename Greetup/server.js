@@ -98,7 +98,7 @@ app.post('/api/registeruser', function (req, res) {
                         req.session.userID = user._id;
                         req.session.name = user.name;
                         console.log("REGISTER! CURRENT USERID AND NAME:", req.session.userID, req.session.name);
-                        res.json({message: "Success"});
+                        res.json({message: "Success", sessionName: req.session.name, sessionUserID: req.session.userID});
                     }
                 })
             }
@@ -138,7 +138,7 @@ app.post('/api/loginuser', function (req, res) {
                     req.session.userID = user._id;
                     req.session.name = user.name;
                     console.log("LOGIN! CURRENT USERID AND NAME:", req.session.userID, req.session.name);
-                    res.json({message: "Success", error: err});
+                    res.json({message: "Success", error: err, sessionName: req.session.name, sessionUserID: req.session.userID});
                 }
                 else {
                     console.log("SERVER! PASSWORD LOGIN ERROR!");

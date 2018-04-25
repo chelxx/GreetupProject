@@ -14,6 +14,8 @@ export class LoginregComponent implements OnInit {
   loginpassworderror;
   registerpassworderror;
   registeremailerror;
+  sessionName;
+  sessionUserID;
 
   constructor(private _httpService: HttpService, private _router: Router, private _route: ActivatedRoute) { }
 
@@ -26,6 +28,9 @@ export class LoginregComponent implements OnInit {
       if(data['message'] == "Success") {
         console.log("LOGINREG-COMP! REGISTER SUCCESS!");
         this.regUser = { name: "", email: "", password: "" }
+        this.sessionName = data['sessionName'];
+        this.sessionUserID = data['sessionUserID'];    
+        console.log("LOGINREG-COMP! BACKEND SESSION INFO:", this.sessionName, this.sessionUserID);
         this._router.navigate(['/home']);
       }
       else {
@@ -49,11 +54,14 @@ export class LoginregComponent implements OnInit {
       if(data['message'] == "Success") {
         console.log("LOGINREG-COMP! LOGIN SUCCESS!");
         this.logUser = { loginemail: "", loginpassword: "" }
+        this.sessionName = data['sessionName'];
+        this.sessionUserID = data['sessionUserID'];    
+        console.log("LOGINREG-COMP! BACKEND SESSION INFO:", this.sessionName, this.sessionUserID);  
         this._router.navigate(['/home']);
       }
       else {
         console.log("LOGINREG-COMP! LOGIN ERROR!");
-        this.loginpassworderror = data['message'];
+        this.loginpassworderror = data['message']; 
         console.log("LOGIN FORM ERROR:", this.loginpassworderror)
       }
     })
