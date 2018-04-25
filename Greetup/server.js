@@ -8,6 +8,8 @@ var path = require("path");
 
 var app = express();
 
+app.use(session({ secret: 'luvumichaelchoi' }));
+
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
@@ -93,9 +95,9 @@ app.post('/api/registeruser', function (req, res) {
                     }
                     else {
                         console.log("SERVER! USER REGISTRATION SUCCESS!");
-                        // req.session.userID = user._id;
+                        req.session.userID = user._id;
                         req.session.name = user.name;
-                        console.log("REGISTER! CURRENT USER ID AND NAME:",  req.session.name);
+                        console.log("REGISTER! CURRENT USERID AND NAME:", req.session.userID, req.session.name);
                         res.json({message: "Success"});
                     }
                 })
@@ -135,7 +137,7 @@ app.post('/api/loginuser', function (req, res) {
                     console.log("SERVER! PASSWORD LOGIN SUCCESS!");
                     req.session.userID = user._id;
                     req.session.name = user.name;
-                    console.log("LOGIN! CURRENT USER ID AND NAME:", req.session.userID, req.session.name);
+                    console.log("LOGIN! CURRENT USERID AND NAME:", req.session.userID, req.session.name);
                     res.json({message: "Success", error: err});
                 }
                 else {
@@ -151,9 +153,11 @@ app.post('/api/loginuser', function (req, res) {
     })
 })
 
-// LOGOUT USER
+// LOGOUT USER - NEEDS WORK!!!
 app.post('/api/logout', function (req, res) {
-    // NEEDS WORK!!!!
+    console.log("DESTROYING SESSION! LOGGING OUT!", req.session)
+    req.session.destroy();
+    res.json({message: "Success"});
 })
 
 // END OF ROUTES
