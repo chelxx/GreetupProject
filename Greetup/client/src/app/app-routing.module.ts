@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AddeventComponent } from './addevent/addevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
 import { VieweventComponent } from './viewevent/viewevent.component';
+import { MapComponent } from './map/map.component';
 // END IMPORT ROUTING
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'addevent', component: AddeventComponent },
   { path: 'editevent/:id', component: EditeventComponent },
   { path: 'greetup/:id', component: VieweventComponent },
-  { path: '', pathMatch:'full', component: LoginregComponent }
+  { path: '', pathMatch:'full', component: LoginregComponent },
+  { path: 'map', component: MapComponent}
 ];
 
 @NgModule({
