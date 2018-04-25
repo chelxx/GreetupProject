@@ -3,6 +3,9 @@ import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 
+import markers from './markers';
+import { Marker } from '@agm/core/services/google-maps-types';
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -16,6 +19,9 @@ export class MapComponent implements OnInit {
   public zoom: number;
   public formatted_address: string;
 
+  public markers: Marker[];
+  
+
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
@@ -27,7 +33,7 @@ export class MapComponent implements OnInit {
     //set google maps defaults
     this.zoom = 14;
     this.latitude = 41.8781,
-      this.longitude = -87.6298;
+    this.longitude = -87.6298;
 
     //create search FormControl
     this.searchControl = new FormControl();

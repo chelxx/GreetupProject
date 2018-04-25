@@ -5,8 +5,8 @@
     <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl" size="100">
   </div>
 
-<agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
-  <agm-marker [latitude]="latitude" [longitude]="longitude">
-    <agm-info-window>Hello There!</agm-info-window>
+<agm-map  [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+  <agm-marker *ngFor="let m of markers"[latitude]="m.latitude" [longitude]="m.longitude">
+    <agm-info-window>{{m.name}}</agm-info-window>
   </agm-marker>
 </agm-map>
