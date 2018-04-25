@@ -10,13 +10,19 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginregComponent } from './loginreg/loginreg.component';
 import { HomeComponent } from './home/home.component';
+import { EditComponent } from './edit/edit.component';
+import { AddComponent } from './add/add.component';
+import { ViewComponent } from './view/view.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginregComponent,
-    HomeComponent
+    HomeComponent,
+    EditComponent,
+    AddComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

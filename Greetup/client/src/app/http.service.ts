@@ -16,4 +16,32 @@ export class HttpService {
     console.log("SERVICE! LOGIN USER!", logUser);
     return this._http.post('/api/loginuser', logUser).map(data => data).toPromise();
   }
+
+  getEvents() {
+    console.log('got to get events method')
+    return this._http.get('/events');
+  }
+
+  addEvent(newEvent) {
+    return this._http.post('/api/events', newEvent);
+  }
+
+  viewEvent(eventID){
+    return this._http.get(`/api/viewEvent/${eventID}`);
+  }
+
+
+  edit(eventID){
+    return this._http.get(`/api/events/${eventID}`)
+  }
+
+  editEvent(eventID, edEvent){
+    return this._http.put(`/api/editEvent/${eventID}`, edEvent);
+  }
+
+  deleteEvent(eventID){
+    return this._http.delete(`/api/deleteEvent/${eventID}`);
+  }
+
+
 }

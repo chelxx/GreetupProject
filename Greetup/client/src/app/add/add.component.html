@@ -1,0 +1,33 @@
+<h1>Add an Event</h1>
+
+
+<form (submit)="addEvent()">
+
+  <label>Event Name:
+    <input type="text" name="name" [(ngModel)]="newEvent.name" #event="ngModel" /> </label>
+
+  <label>Event Description:
+    <input type="text" name="description" [(ngModel)]="newEvent.description" #eventdescription="ngModel" /> </label>
+
+    <label>Date:
+      <input type="date" name="date" [(ngModel)]="newEvent.date" #eventdate="ngModel" /> </label>
+
+
+  <label>Street:
+    <input type="text" name="street" [(ngModel)]="newEvent.street" #eventstreet="ngModel" /> </label>
+
+  <label>City:
+    <input type="text" name="city" [(ngModel)]="newEvent.city" #eventcity="ngModel" /> </label>
+
+  <label>State:
+    <input type="text" name="state" [(ngModel)]="newEvent.state" #eventstate="ngModel" /> </label>
+
+  <label>Zip:
+    <input type="number" name="zip" [(ngModel)]="newEvent.zip" #eventzip="ngModel" /> </label>
+
+  <button type="submit" class="btn btn-info">Add this Event to Greetup</button>
+</form>
+<button type="button" [routerLink]="['/home']" class="btn btn-danger">Cancel</button>
+<h5 *ngIf="error">{{error}}</h5>
+
+<h5>{{errors}}</h5>

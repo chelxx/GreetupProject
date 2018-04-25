@@ -1,0 +1,34 @@
+<h1>Edit Your Event</h1>
+
+
+<form (submit)="editEvent()">
+
+  <label>Event Name:
+    <input type="text" name="name" [(ngModel)]="edEvent.name" #edevent="ngModel" /> </label>
+
+  <label>Event Description:
+    <input type="text" name="description" [(ngModel)]="edEvent.description" #edeventdescription="ngModel" /> </label>
+
+    <label>Date:
+      <input type="date" name="date" [(ngModel)]="edEvent.date" #edeventdate="ngModel" /> </label>
+
+
+  <label>Street:
+    <input type="text" name="street" [(ngModel)]="edEvent.street" #edeventstreet="ngModel" /> </label>
+
+  <label>City:
+    <input type="text" name="city" [(ngModel)]="edEvent.city" #edeventcity="ngModel" /> </label>
+
+  <label>State:
+    <input type="text" name="state" [(ngModel)]="edEvent.state" #edeventstate="ngModel" /> </label>
+
+  <label>Zip:
+    <input type="number" name="zip" [(ngModel)]="edEvent.zip" #edeventzip="ngModel" /> </label>
+
+  <button type="submit" class="btn btn-info">Edit your event on Greetup</button>
+</form>
+<button type="button" [routerLink]="['/home']" class="btn btn-danger">Cancel</button>
+<h5 *ngIf="error">{{error}}</h5>
+
+<h5>{{errors}}</h5>
+
