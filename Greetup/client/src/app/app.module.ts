@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { LoginregComponent } from './loginreg/loginreg.component';
 import { HomeComponent } from './home/home.component';
 
+// import { PersistenceModule } from 'angular-persistence';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,9 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     FormsModule,
     HttpModule,
+
+    // PersistenceModule,
+
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]
