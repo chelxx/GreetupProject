@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { AddeventComponent } from './addevent/addevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
 import { VieweventComponent } from './viewevent/viewevent.component';
+import { BannerComponent } from './banner/banner.component';
 
 // import { PersistenceModule } from 'angular-persistence';
 
@@ -23,7 +24,8 @@ import { VieweventComponent } from './viewevent/viewevent.component';
     HomeComponent,
     AddeventComponent,
     EditeventComponent,
-    VieweventComponent
+    VieweventComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,

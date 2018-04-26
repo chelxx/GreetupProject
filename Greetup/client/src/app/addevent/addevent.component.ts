@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Params, Router} from '@angular/router';
-import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-addevent',

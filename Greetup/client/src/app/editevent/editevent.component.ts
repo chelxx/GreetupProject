@@ -23,7 +23,7 @@ export class EditeventComponent implements OnInit {
       console.log("GOT TO EDIT HERE")
       observable.subscribe(data => {
         this.edEvent = data['event']
-        console.log(data);
+        console.log(this.edEvent);
       })
     })
   }

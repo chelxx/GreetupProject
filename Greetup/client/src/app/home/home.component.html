@@ -1,24 +1,15 @@
+<app-banner></app-banner>
 <div id="homebanner" class="container-fluid">
-
+  <div id="homebanner-words">
+    <h2>Find a Greetup</h2>
+    <h6>{{ events.length }} Greetups available</h6>
+  </div>
 </div>
 <div id="home" class="container col-md-6">
-  <h1>THIS IS HOME! SESSION NAME?!</h1>
-  <table class="table table-striped">
-    <thead> 
-      <tr>
-        <th>Greetup</th>
-        <th>Date</th>
-        <th>City</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let e of events">
-        <td>{{ e.name }}</td>
-        <td>{{ e.date | date: 'MMMM dd, yyyy' }} </td>
-        <td>{{ e.city }} </td>
-        <td><button [routerLink]="['/greetup', e._id]" value="{{e._id}}" class="btn btn-info btn-sm">View</button>
-      </tr>
-    </tbody>
-  </table>
-  <button type="button" [routerLink]="['/addevent']" class="btn btn-info">Add an Event</button>
+    <div *ngFor="let e of events" class="homeeventbox">
+      <h3>{{ e.name }}</h3>
+      <p>DATE: {{ e.date | date: 'MMMM dd, yyyy' }}</p>
+      <p>LOCATION: {{ e.street }}, {{ e.city }}, {{ e.state }}, {{ e.zip }}</p>
+      <button [routerLink]="['/greetup', e._id]" value="{{e._id}}" class="btn btn-info btn-sm form-control btn-view">VIEW GREETUP</button>
+    </div>
 </div>

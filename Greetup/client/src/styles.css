@@ -1,3 +1,6 @@
+* {
+    color: rgb(78, 78, 78);
+}
 .error {
     color: tomato;
 }
@@ -5,12 +8,22 @@
     color: yellowgreen;
 }
 .logo {
-    height: 50px;
+    margin-top: 5px;
+    margin-left: 5px;
+    height: 70px;
 }
-div.container-fluid {
+div#mainindex.container-fluid {
     padding-top: 10px;
 }
-
+a.pinktext {
+    color: rgb(235, 66, 136);
+}
+a.pinktext:hover {
+    text-decoration: none;
+}
+h5 {
+    font-weight: 200;
+}
 /* LOGIN/REG COMPONENT */
 div#userForm {
     align-content: center;
@@ -27,12 +40,12 @@ div#userForm input {
     border-radius: 5px;
 }
 button.btn.btn-info {
-    background-color: rgb(223, 17, 103);
+    background-color: rgb(235, 66, 136);
     border-radius: 5px;    
     border: none;    
     color: white;
 }
-button:hover.btn.btn-info {
+button.btn.btn-info:hover {
     transform: scale(1.05);
     border-radius: 5px;    
     border: none;
@@ -45,3 +58,56 @@ button:disabled.disabled, button[disabled].disabled {
     color: rgb(106, 49, 73); 
 }
 /* END OF LOGINREG COMPONENT */
+
+/* HOME COMPONENT */
+div#homebanner.container-fluid {
+    height: 150px;
+    background-color: rgb(235, 66, 136);
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+div#homebanner-words {
+    background: transparent;
+    text-align: center;
+    font-weight: normal;
+    color: white;
+}
+div.homeeventbox {
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10px;
+}
+button.btn.btn-info.btn-view {
+    border: 1px solid rgb(235, 66, 136);
+    background: transparent;
+    color: rgb(235, 66, 136);
+}
+/* END OF HOME COMPONENT */
+
+/* BANNER COMPONENT */
+div#greetupbanner {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+div#greetupbanner img {
+    height: 40px;
+}
+/* END OF BANNER COMPONENT */
+
+/* VIEW EVENT COMPONENT */
+div#viewevent-more {
+    background-color: rgb(243, 243, 243);
+    height: 100vh;
+}
+div#viewevent-details {
+    margin-top: 20px;
+}
+/* END OF VIEW COMPONENT */
+
+/* ADD EVENT COMPONENT */
+div#balloons {
+    
+}
+/* END OF ADD EVENT COMPONENT */

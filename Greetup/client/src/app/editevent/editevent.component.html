@@ -1,33 +1,102 @@
-<h1>Edit Your Event</h1>
+<app-banner></app-banner>
+<div id="editevent" class="container col-md-6">
+  <h1>Edit Greetup Details</h1>
+  <form (submit)="editEvent()" #editGreetupForm="ngForm">
+  
+    <label>Event Name:</label>
+    <input
+    type="text"
+    name="name"
+    class="form-control"
+    required
+    [(ngModel)]="edEvent.name"
+    #edevent="ngModel"
+    /> 
+    <div *ngIf="!edevent.valid">
+      <p *ngIf="edevent.errors.required" class="error">Event Name is required.</p>
+    </div>
+  
+    <label>Event Description:</label>
+    <input
+    type="text"
+    name="description"
+    class="form-control"
+    required
+    [(ngModel)]="edEvent.description"
+    #edeventdescription="ngModel"
+    /> 
+    <div *ngIf="!edeventdescription.valid">
+      <p *ngIf="edeventdescription.errors.required" class="error">Event Name is required.</p>
+    </div>
+  
+    <label>Date:</label>
+    <input
+    type="date"
+    name="date"
+    class="form-control"
+    required
+    [(ngModel)]="edEvent.date"
+    #edeventdate="ngModel"
+    />
+    <div *ngIf="!edeventdate.valid">
+      <p *ngIf="edeventdate.errors.required" class="error">Event Name is required.</p>
+    </div>
+  
+    <label>Street:</label>
+    <input
+    type="text"
+    name="street"
+    class="form-control"
+    required
+    [(ngModel)]="edEvent.street"
+    #edeventstreet="ngModel"
+    /> 
+    <div *ngIf="!edeventstreet.valid">
+      <p *ngIf="edeventstreet.errors.required" class="error">Event Name is required.</p>
+    </div>
+  
+    <label>City:</label>
+    <input
+    type="text"
+    name="city"
+    class="form-control"
+    required
+    [(ngModel)]="edEvent.city"
+    #edeventcity="ngModel"
+    /> 
+    <div *ngIf="!edeventcity.valid">
+      <p *ngIf="edeventcity.errors.required" class="error">Event Name is required.</p>
+    </div>
+  
+    <label>State:</label>
+    <input
+    type="text"
+    name="state"
+    class="form-control"
+    required
+    [(ngModel)]="edEvent.state"
+    #edeventstate="ngModel"
+    /> 
+    <div *ngIf="!edeventstate.valid">
+      <p *ngIf="edeventstate.errors.required" class="error">Event Name is required.</p>
+    </div>
+  
+    <label>Zip:</label>
+    <input
+    type="number"
+    name="zip"
+    class="form-control"
+    required
+    [(ngModel)]="edEvent.zip" 
+    #edeventzip="ngModel" 
+    /> 
+    <div *ngIf="!edeventzip.valid">
+      <p *ngIf="edeventzip.errors.required" class="error">Event Name is required.</p>
+    </div>
 
-
-<form (submit)="editEvent()">
-
-  <label>Event Name:
-    <input type="text" name="name" [(ngModel)]="edEvent.name" #edevent="ngModel" /> </label>
-
-  <label>Event Description:
-    <input type="text" name="description" [(ngModel)]="edEvent.description" #edeventdescription="ngModel" /> </label>
-
-    <label>Date:
-      <input type="date" name="date" [(ngModel)]="edEvent.date" #edeventdate="ngModel" /> </label>
-
-
-  <label>Street:
-    <input type="text" name="street" [(ngModel)]="edEvent.street" #edeventstreet="ngModel" /> </label>
-
-  <label>City:
-    <input type="text" name="city" [(ngModel)]="edEvent.city" #edeventcity="ngModel" /> </label>
-
-  <label>State:
-    <input type="text" name="state" [(ngModel)]="edEvent.state" #edeventstate="ngModel" /> </label>
-
-  <label>Zip:
-    <input type="number" name="zip" [(ngModel)]="edEvent.zip" #edeventzip="ngModel" /> </label>
-
-  <button type="submit" class="btn btn-info">Edit your event on Greetup</button>
-</form>
-<button type="button" [routerLink]="['/home']" class="btn btn-danger">Cancel</button>
-<h5 *ngIf="error">{{error}}</h5>
-
-<h5>{{errors}}</h5>
+    <button type="submit" class="btn btn-info form-control">Edit Greetup</button>
+  </form>
+  <h5 *ngIf="error">{{error}}</h5>
+  
+  <h5>{{errors}}</h5>
+</div>

@@ -1,11 +1,16 @@
-<h1>{{event.name}}</h1>
-<h3>Description:</h3>{{event.description}}
-<h3>Location:</h3>
-<h4>{{event.street}}</h4> 
-<h4>{{event.city}}</h4>
-<h4>{{event.state}}</h4>
-<h4>{{event.zip}}</h4>
-<h4>{{event.date}}</h4>
+<app-banner></app-banner>
+<div id="viewevent" class="container col-md-6">
+    <h1>{{event.name}}</h1>
+    <p>{{ event.date | date: 'MMMM dd, yyyy' }}</p>
+</div>
+<div id="viewevent-more" class="container-fluid">
+    <div id="viewevent-details" class="container col-md-6">
+        <br>
+        <h3>Details</h3>
+        <p>WHERE: {{ event.street }}, {{ event.city }}, {{ event.state }} {{ event.zip }}</p>
+        <p>DESCRIPTION: {{ event.description }}</p>
 
-<button type="button" (click)="likeEvent()" class="btn btn-info" [disabled]="isClickedOnce==true">Attend {{event.likes}}</button>
-<button [routerLink]="['/editevent', event._id]" value="{{event._id}}" class="btn btn-info">Edit</button>
+        <button type="button" (click)="likeEvent()" class="btn btn-info btn-view" [disabled]="isClickedOnce==true">Attend {{event.likes}}</button>
+        <button [routerLink]="['/editevent', event._id]" value="{{event._id}}" class="btn btn-info btn-view">Edit</button>
+    </div>
+</div>

@@ -1,33 +1,99 @@
-<h1>Add an Event</h1>
+<app-banner></app-banner>
+<div id="balloons" class="container-fluid">
 
+</div>
+<div id="addevent" class="container col-md-6">
+  <h1>Add Greetup Details</h1>
+  <form (submit)="addEvent()" #addGreetupForm="ngForm">
+    <label>Event Name:</label>
+    <input
+    type="text"
+    name="name"
+    class="form-control"
+    [(ngModel)]="newEvent.name"
+    #event="ngModel"
+    /> 
+    <!-- <div *ngIf="!event.valid">
+      <p *ngIf="event.errors.required" class="error">Event Name is required.</p>
+    </div> -->
+  
+    <label>Event Description:</label>
+    <input
+    type="text"
+    name="description"
+    class="form-control"
+    [(ngModel)]="newEvent.description"
+    #eventdescription="ngModel"
+    />
+    <!-- <div *ngIf="!eventdscription.valid">
+      <p *ngIf="eventdscription.errors.required" class="error">Event Description is required.</p>
+    </div> -->
+  
+    <label>Date:</label>
+    <input
+    type="date"
+    name="date"
+    class="form-control"
+    [(ngModel)]="newEvent.date"
+    #eventdate="ngModel"
+    /> 
+    <!-- <div *ngIf="!eventdate.valid">
+      <p *ngIf="eventdate.errors.required" class="error">Event Date is required.</p>
+    </div> -->
+  
+    <label>Street:</label>
+    <input
+    type="text"
+    name="street"
+    class="form-control"
+    [(ngModel)]="newEvent.street"
+    #eventstreet="ngModel"
+    /> 
+    <!-- <div *ngIf="!eventstreet.valid">
+      <p *ngIf="eventstreet.errors.required" class="error">Event Street is required.</p>
+    </div> -->
+  
+    <label>City:</label>
+    <input
+    type="text"
+    name="city"
+    class="form-control"
+    [(ngModel)]="newEvent.city"
+    #eventcity="ngModel"
+    /> 
+    <!-- <div *ngIf="!eventcity.valid">
+      <p *ngIf="eventcity.errors.required" class="error">Event City is required.</p>
+    </div> -->
+  
+    <label>State:</label>
+    <input
+    type="text"
+    name="state"
+    class="form-control"
+    [(ngModel)]="newEvent.state"
+    #eventstate="ngModel"
+    /> 
+    <!-- <div *ngIf="!eventstate.valid">
+      <p *ngIf="eventstate.errors.required" class="error">Event State is required.</p>
+    </div> -->
+  
+    <label>Zip:</label>
+    <input
+    type="number"
+    name="zip"
+    class="form-control"
+    [(ngModel)]="newEvent.zip"
+    #eventzip="ngModel"
+    /> 
+    <!-- <div *ngIf="!eventzip.valid">
+      <p *ngIf="eventzip.errors.required" class="error">Event Zip is required.</p>
+    </div> -->
+  
+    <button type="submit" class="btn btn-info form-control">Add New Greetup</button>
+  </form>
+  <br>
+  <h5 *ngIf="error">{{error}}</h5>
+  <h5>{{errors}}</h5>
+</div>
 
-<form (submit)="addEvent()">
-
-  <label>Event Name:
-    <input type="text" name="name" [(ngModel)]="newEvent.name" #event="ngModel" /> </label>
-
-  <label>Event Description:
-    <input type="text" name="description" [(ngModel)]="newEvent.description" #eventdescription="ngModel" /> </label>
-
-    <label>Date:
-      <input type="date" name="date" [(ngModel)]="newEvent.date" #eventdate="ngModel" /> </label>
-
-
-  <label>Street:
-    <input type="text" name="street" [(ngModel)]="newEvent.street" #eventstreet="ngModel" /> </label>
-
-  <label>City:
-    <input type="text" name="city" [(ngModel)]="newEvent.city" #eventcity="ngModel" /> </label>
-
-  <label>State:
-    <input type="text" name="state" [(ngModel)]="newEvent.state" #eventstate="ngModel" /> </label>
-
-  <label>Zip:
-    <input type="number" name="zip" [(ngModel)]="newEvent.zip" #eventzip="ngModel" /> </label>
-
-  <button type="submit" class="btn btn-info">Add this Event to Greetup</button>
-</form>
-<button type="button" [routerLink]="['/home']" class="btn btn-danger">Cancel</button>
-<h5 *ngIf="error">{{error}}</h5>
-
-<h5>{{errors}}</h5>
+<!-- NOTES: ADDING FRONT END VALIDATIONS PREVENTS FROM ADDING GREETUP -->

@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AddeventComponent } from './addevent/addevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
 import { VieweventComponent } from './viewevent/viewevent.component';
+import { BannerComponent } from './banner/banner.component';
 // END IMPORT ROUTING
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'addevent', component: AddeventComponent },
   { path: 'editevent/:id', component: EditeventComponent },
   { path: 'greetup/:id', component: VieweventComponent },
+  { path: 'banner', component: BannerComponent },
   { path: '', pathMatch:'full', component: LoginregComponent }
 ];
 
