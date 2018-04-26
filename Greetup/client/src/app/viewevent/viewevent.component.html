@@ -5,7 +5,8 @@
 <h4>{{event.city}}</h4>
 <h4>{{event.state}}</h4>
 <h4>{{event.zip}}</h4>
-<h4>{{event.date}}</h4>
+<h4>{{event.date | date: 'fullDate'}}</h4>
+<h4>{{event.date | date: 'shortTime'}}</h4>
 
 <button type="button" (click)="likeEvent()" class="btn btn-info" [disabled]="isClickedOnce==true">Attend {{event.likes}}</button>
 <button [routerLink]="['/editevent', event._id]" value="{{event._id}}" class="btn btn-info">Edit</button>
