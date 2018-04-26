@@ -6,7 +6,11 @@
   </div>
 
 <agm-map  [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-  <agm-marker *ngFor="let m of markers"[latitude]="m.lat" [longitude]="m.lng">
+
+  <agm-marker 
+  *ngFor="let m of markers"[latitude]="m.lat" 
+  [longitude]="m.lng">
     <agm-info-window>{{m.name}}</agm-info-window>
+  
   </agm-marker>
 </agm-map>

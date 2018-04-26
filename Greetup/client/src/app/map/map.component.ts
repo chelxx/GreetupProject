@@ -13,14 +13,13 @@ import { HttpService } from '../http.service';
 })
 
 export class MapComponent implements OnInit {
-  public latitude: number;
-  public longitude: number;
+  public lat: number;
+  public lng: number;
   public searchControl: FormControl;
   public zoom: number;
   public formatted_address: string;
 
-  // public markers: Marker[];
-  markers;
+
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -29,12 +28,16 @@ export class MapComponent implements OnInit {
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone, private _httpService: HttpService) { }
 
+
+   markers: marker[] = []
+
+
   ngOnInit() {
     //set google maps defaults
     this.getEvents();
     this.zoom = 14;
-    this.latitude = 41.8781,
-    this.longitude = -87.6298;
+    this.lat = 41.8781,
+    this.lng = -87.6298;
 
     //create search FormControl
     this.searchControl = new FormControl();
@@ -42,8 +45,10 @@ export class MapComponent implements OnInit {
     //set current position
     this.setCurrentPosition();
 
+
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
+
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
         types: ["address"]
       });
@@ -59,13 +64,13 @@ export class MapComponent implements OnInit {
           }
 
           // set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
+          this.lat = place.geometry.location.lat();
+          this.lng = place.geometry.location.lng();
           this.formatted_address = place.formatted_address;
           this.zoom = 14;
           console.log(this.formatted_address);
-          console.log(this.latitude);
-          console.log(this.longitude);
+          console.log(this.lat);
+          console.log(this.lng);
           console.log(this.zoom);
 
         });
@@ -86,10 +91,15 @@ export class MapComponent implements OnInit {
   private setCurrentPosition() {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
         //this.zoom = 14;
       });
     }
   }
+}
+interface marker {
+  lat: number;
+  lng: number;
+  name: string;
 }
