@@ -100,8 +100,11 @@ var EventSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    location: {
-        type: Float32Array
+    lat: {
+        type: Number
+    },
+    lng: {
+        type: Number
     },
 }, { timestamps: true })
 
@@ -241,7 +244,7 @@ app.get('/api/viewEvent/:id', function (req, res) {
 
 // 3. Creates an event
 app.post('/api/events', function (req, res) {
-    var event = new Event({ name: req.body.name, description: req.body.description, street: req.body.street, city: req.body.city, state: req.body.state, zip: req.body.zip, date: req.body.date })
+    var event = new Event({ name: req.body.name, description: req.body.description, street: req.body.street, city: req.body.city, state: req.body.state, zip: req.body.zip, date: req.body.date, lat: req.body.lat, lng: req.body.lng})
     console.log("HELLO FROM EVENTS ")
     event.save(function (err) {
         if (err) {

@@ -12,7 +12,7 @@ import { MapService } from '../map.service';
 })
 export class AddeventComponent implements OnInit {
 
-  newEvent = {name: "", description: "", street: "", city: "", state:"", zip: Number , date: Date };
+  newEvent = {name: "", description: "", street: "", city: "", state:"", zip: Number , date: Date , lat: Number , lng: Number };
   error;
   errors;
 
@@ -20,6 +20,7 @@ export class AddeventComponent implements OnInit {
 
   ngOnInit() {
   }
+  // Grabs full address from form and sends to geocoding for lat/lng before sending address to addEvent()
   sendToGeocode(): void {
     var event = this.newEvent;
     var address = `${event.street}, ${event.city}, ${event.state}, ${event.zip}`
@@ -37,21 +38,23 @@ export class AddeventComponent implements OnInit {
   addEvent(location): void {
     console.log("hit the addevent method from GeoCode with data?")
     console.log('location: ', location);
-    // var observable = this._httpService.addEvent(this.newEvent);
-    // console.log("GOT TO ADD EVENT 1", this.newEvent);
-    // observable.subscribe( data => {
-    //   console.log("GOT TO ADD EVENT 2", data);
-    //   if(data['message'] == "Success!") {
-    //     console.log("GOT TO ADD EVENT 3");
-    //     this.newEvent = {name: "", description: "", street: "", city: "", state:"", zip: Number , date: Date }
-    //     console.log("GOT TO ADD EVENT 4");
-    //     this._router.navigate(['home']);
-    //   }
-    //   else{
-    //     this.error = data['error']['message'];
-    //     this.errors = data['message'];
-    //     console.log("IN ERRORS", this.error, this.errors)
-    //   }
-    // })
+    this.newEvent.lat = location.lat;
+    this.newEvent.lng = location.lng;
+    var observable = this._httpService.addEvent(this.newEvent);
+    console.log("GOT TO ADD EVENT 1", this.newEvent);
+    observable.subscribe( data => {
+      console.log("GOT TO ADD EVENT 2", data);
+      if(data['message'] == "Success!") {
+        console.log("GOT TO ADD EVENT 3");
+        this.newEvent = {name: "", description: "", street: "", city: "", state:"", zip: Number , date: Date, lat: Number, lng: Number }
+        console.log("GOT TO ADD EVENT 4");
+        this._router.navigate(['home']);
+      }
+      else{
+        this.error = data['error']['message'];
+        this.errors = data['message'];
+        console.log("IN ERRORS", this.error, this.errors)
+      }
+    })
   }
 }
