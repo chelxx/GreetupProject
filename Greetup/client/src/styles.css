@@ -95,11 +95,17 @@ div#home-map {
     overflow: hidden;
     border-radius: 50%;
     position: relative;
+    vertical-align: top;
+    margin-top: 10px;
     z-index: 99;
     height: 350px;
     width: 350px;
     border: 3px solid rgb(235, 66, 136);
 }
+
+/* div#searchdatasp  {
+    
+} */
 /* END OF HOME COMPONENT */
 
 /* BANNER COMPONENT */
