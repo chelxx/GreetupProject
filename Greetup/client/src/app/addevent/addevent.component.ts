@@ -27,7 +27,7 @@ export class AddeventComponent implements OnInit {
     console.log("GOT TO sendtoGeocode in addEvent ts");
     var observable = this._mapService.codeAddress(address);
     observable.subscribe(data => { 
-      console.log("sendtoGeoCode returned data: ", data);
+      console.log("sendtoGeoCode returned data in add: ", data);
       var location = data[0].geometry.location;
       this.addEvent({
         lat: location.lat(),
@@ -36,7 +36,7 @@ export class AddeventComponent implements OnInit {
     })
   }
   addEvent(location): void {
-    console.log("hit the addevent method from GeoCode with data?")
+    console.log("hit the addevent method from GeoCode with data")
     console.log('location: ', location);
     this.newEvent.lat = location.lat;
     this.newEvent.lng = location.lng;
