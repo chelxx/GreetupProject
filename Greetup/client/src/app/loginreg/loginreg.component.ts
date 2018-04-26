@@ -29,7 +29,9 @@ export class LoginregComponent implements OnInit {
         console.log("LOGINREG-COMP! REGISTER SUCCESS!");
         this.regUser = { name: "", email: "", password: "" }
         this.sessionName = data['sessionName'];
-        this.sessionUserID = data['sessionUserID'];    
+        this.sessionUserID = data['sessionUserID'];
+        // this._httpService.setUser(this.sessionName);
+        localStorage.setItem( 'sessionName', this.sessionName )
         console.log("LOGINREG-COMP! BACKEND SESSION INFO:", this.sessionName, this.sessionUserID);
         this._router.navigate(['/home']);
       }
@@ -55,7 +57,9 @@ export class LoginregComponent implements OnInit {
         console.log("LOGINREG-COMP! LOGIN SUCCESS!");
         this.logUser = { loginemail: "", loginpassword: "" }
         this.sessionName = data['sessionName'];
-        this.sessionUserID = data['sessionUserID'];    
+        this.sessionUserID = data['sessionUserID'];
+        // this._httpService.setUser(this.sessionName);  
+        localStorage.setItem( 'sessionName', this.sessionName ) 
         console.log("LOGINREG-COMP! BACKEND SESSION INFO:", this.sessionName, this.sessionUserID);  
         this._router.navigate(['/home']);
       }

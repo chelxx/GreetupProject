@@ -5,9 +5,10 @@
 
     </nav>
     <nav class="navbar">
-      <h5><a [routerLink]="['/addevent']" class="pinktext">Create a Greetup</a>&nbsp;|&nbsp;</h5>
-      <h5><a [routerLink]="['/chat']" class="pinktext">Chat</a>&nbsp;|&nbsp;</h5>
-      <h5>Welcome, SessionName!</h5>
+      <h5><a [routerLink]="['/addevent']" class="pinktext" style="color: rgb(235, 66, 136)">Create a Greetup</a>&nbsp;|&nbsp;</h5>
+      <h5><a [routerLink]="['/chat']" class="pinktext" style="color: rgb(235, 66, 136)">Chat</a>&nbsp;|&nbsp;</h5>
+      <h5><a (click)="logoutUser()" style="color: rgb(235, 66, 136)">Log Out</a>&nbsp;|&nbsp;</h5>
+      <h5>Welcome, {{ name }}!</h5>
     </nav>
   </nav>
 </div>
