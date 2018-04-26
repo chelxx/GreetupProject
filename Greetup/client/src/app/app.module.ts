@@ -17,7 +17,8 @@ import { MapComponent } from './map/map.component';
 
 // import { PersistenceModule } from 'angular-persistence';
 import { AgmCoreModule } from '@agm/core';
-// import { }
+import { MapService } from './map.service';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { AgmCoreModule } from '@agm/core';
       libraries: ["places"]
     })
   ],
-  providers: [HttpService],
+  providers: [HttpService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

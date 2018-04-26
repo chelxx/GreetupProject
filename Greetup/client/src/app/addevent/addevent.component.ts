@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Params, Router} from '@angular/router';
 import { Http } from '@angular/http';
+import { MapService } from '../map.service';
+
 
 @Component({
   selector: 'app-addevent',
@@ -14,27 +16,42 @@ export class AddeventComponent implements OnInit {
   error;
   errors;
 
-  constructor(private _httpService: HttpService, private _router: Router, private_route: ActivatedRoute) { }
+  constructor(private _httpService: HttpService, private _router: Router, private_route: ActivatedRoute, private _mapService: MapService) { }
 
   ngOnInit() {
   }
-  addEvent(): void {
-    console.log("GOT TO ADD EVENT 0");
-    var observable = this._httpService.addEvent(this.newEvent);
-    console.log("GOT TO ADD EVENT 1", this.newEvent);
-    observable.subscribe( data => {
-      console.log("GOT TO ADD EVENT 2", data);
-      if(data['message'] == "Success!") {
-        console.log("GOT TO ADD EVENT 3");
-        this.newEvent = {name: "", description: "", street: "", city: "", state:"", zip: Number , date: Date }
-        console.log("GOT TO ADD EVENT 4");
-        this._router.navigate(['home']);
-      }
-      else{
-        this.error = data['error']['message'];
-        this.errors = data['message'];
-        console.log("IN ERRORS", this.error, this.errors)
-      }
+  sendToGeocode(): void {
+    var event = this.newEvent;
+    var address = `${event.street}, ${event.city}, ${event.state}, ${event.zip}`
+    console.log("GOT TO sendtoGeocode in addEvent ts");
+    var observable = this._mapService.codeAddress(address);
+    observable.subscribe(data => { 
+      console.log("sendtoGeoCode returned data: ", data);
+      var location = data[0].geometry.location;
+      this.addEvent({
+        lat: location.lat(),
+        lng: location.lng(),
+      })
     })
+  }
+  addEvent(location): void {
+    console.log("hit the addevent method from GeoCode with data?")
+    console.log('location: ', location);
+    // var observable = this._httpService.addEvent(this.newEvent);
+    // console.log("GOT TO ADD EVENT 1", this.newEvent);
+    // observable.subscribe( data => {
+    //   console.log("GOT TO ADD EVENT 2", data);
+    //   if(data['message'] == "Success!") {
+    //     console.log("GOT TO ADD EVENT 3");
+    //     this.newEvent = {name: "", description: "", street: "", city: "", state:"", zip: Number , date: Date }
+    //     console.log("GOT TO ADD EVENT 4");
+    //     this._router.navigate(['home']);
+    //   }
+    //   else{
+    //     this.error = data['error']['message'];
+    //     this.errors = data['message'];
+    //     console.log("IN ERRORS", this.error, this.errors)
+    //   }
+    // })
   }
 }

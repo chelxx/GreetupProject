@@ -100,6 +100,9 @@ var EventSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    location: {
+        type: Float32Array
+    },
 }, { timestamps: true })
 
 
