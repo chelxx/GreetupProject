@@ -6,6 +6,11 @@ var socket = require('socket.io');
 var express = require("express");
 var path = require("path");
 
+//socket chat
+var router = express.Router();
+var debug = require('debug')('angular2-nodejs:server');
+var http = require('http');
+
 var app = express();
 
 app.use(session({ secret: 'luvumichaelchoi' }));
@@ -93,9 +98,13 @@ var EventSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required:[true,"Let attendees know when this event is taking palce!"],
+        required:[true,"Let attendees know when this event is taking place!"],
         default: Date.now
     },
+    // time: {
+    //     type: Date,
+    //     required: [true, "Please include an event time!"]
+    // },
     likes: {
         type: Number,
         default: 0
@@ -108,6 +117,15 @@ var EventSchema = new mongoose.Schema({
     },
 }, { timestamps: true })
 
+var ChatSchema = new mongoose.Schema({
+    room: String,
+    nickname: String,
+    message: String,
+    updated_at: { type: Date, default: Date.now },
+});
+
+mongoose.model('Chat', ChatSchema);
+var Chat = mongoose.model('Chat');
 
 mongoose.model('Event', EventSchema) // We are setting this Schema in our Models as 'User'
 var Event = mongoose.model('Event')
@@ -298,4 +316,31 @@ app.all("*", (req,res,next) => {
 
 var server = app.listen(6789, function() {
     console.log("Listening on port 6789!");
+});
+
+// ******************** //
+
+var io = require('socket.io').listen(server);
+
+io.on('connection',(socket)=>{
+    console.log('new connection made.');
+
+    socket.on('join', function(data){
+        //joining
+        socket.join(data.room);
+        console.log(data.user + 'joined the room : ' + data.room);
+        socket.broadcast.to(data.room).emit('new user joined', {user:data.user, message:'has joined this room.'});
+    });
+
+    socket.on('leave', function(data){
+        console.log(data.user + 'left the room : ' + data.room);
+        socket.broadcast.to(data.room).emit('left room', {user:data.user, message:'has left this room.'});
+        socket.leave(data.room);
+    });
+
+    socket.on('message',function(data){
+        if(socket.rooms.hasOwnProperty(data.room)){
+            io.in(data.room).emit('new message', {user:data.user, message:data.message});
+        }
+    })
 });

@@ -21,6 +21,9 @@ a.pinktext {
 a.pinktext:hover {
     text-decoration: none;
 }
+.pinktext {
+    color: rgb(235, 66, 136);
+}
 h5 {
     font-weight: 200;
 }
@@ -84,6 +87,19 @@ button.btn.btn-info.btn-view {
     background: transparent;
     color: rgb(235, 66, 136);
 }
+div#home {
+    display: inline-block;
+}
+div#home-map {
+    display: inline-block;    
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    z-index: 99;
+    height: 350px;
+    width: 350px;
+    border: 3px solid rgb(235, 66, 136);
+}
 /* END OF HOME COMPONENT */
 
 /* BANNER COMPONENT */
@@ -102,12 +118,63 @@ div#viewevent-more {
     height: 100vh;
 }
 div#viewevent-details {
+    display: inline-block;
     margin-top: 20px;
+    vertical-align: top;
+}
+div#viewevent-details img {
+    border-radius: 20px;
+    text-align: center;
+    border: 4px solid rgb(219, 219, 219);
+}
+div#view-map {
+    margin: 10px;
+    display: inline-block;    
+    /* overflow: hidden;
+    border-radius: 10px;;
+    position: relative;
+    z-index: 99;
+    height: 250px;
+    width: 250px; */
+}
+div#view-where {
+    /* height: 50px; */
+    text-align: center;
+}
+div#view-gm {
+    margin: 10px;
+    display: inline-block;    
+    overflow: hidden;
+    border-radius: 10px;;
+    position: relative;
+    z-index: 99;
+    height: 275px;
+    width: 275px;
+    border: 4px solid rgb(219, 219, 219);
+}
+img.placeholder {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 300px;
+    width: 600px;
+}
+button.btn.btn-info.btn-view.btn-pink:hover {
+    background-color: rgb(235, 66, 136);
+    color: white;
+    transform: none;
+}
+div#view-btns {
+    display: block;
+    text-align: center;
 }
 /* END OF VIEW COMPONENT */
 
 /* ADD EVENT COMPONENT */
 div#balloons {
-    
+    background-image: url(assets/chicago3.jpg);
+    height: 300px;
+    overflow: hidden;
+    background-size: 100% 100%;
 }
 /* END OF ADD EVENT COMPONENT */

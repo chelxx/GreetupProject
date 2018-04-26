@@ -1,10 +1,8 @@
 <app-banner></app-banner>
-<div id="balloons" class="container-fluid">
-
-</div>
-<div id="addevent" class="container col-md-6">
-  <h1>Add Greetup Details</h1>
-  <form (submit)="addEvent()" #addGreetupForm="ngForm">
+<div id="balloons" class="container-fluid"></div>
+<div id="addevent" class="container col-md-5">
+  <br>
+  <form (submit)="sendToGeocode()" #addGreetupForm="ngForm">
     <label>Event Name:</label>
     <input
     type="text"
@@ -13,9 +11,9 @@
     [(ngModel)]="newEvent.name"
     #event="ngModel"
     /> 
-    <!-- <div *ngIf="!event.valid">
+    <div *ngIf="!event.valid">
       <p *ngIf="event.errors.required" class="error">Event Name is required.</p>
-    </div> -->
+    </div>
   
     <label>Event Description:</label>
     <input
@@ -25,21 +23,21 @@
     [(ngModel)]="newEvent.description"
     #eventdescription="ngModel"
     />
-    <!-- <div *ngIf="!eventdscription.valid">
+    <div *ngIf="!eventdscription.valid">
       <p *ngIf="eventdscription.errors.required" class="error">Event Description is required.</p>
-    </div> -->
+    </div>
   
-    <label>Date:</label>
+    <label>Date and Time:</label>
     <input
-    type="date"
+    type="datetime-local"
     name="date"
     class="form-control"
     [(ngModel)]="newEvent.date"
     #eventdate="ngModel"
     /> 
-    <!-- <div *ngIf="!eventdate.valid">
+    <div *ngIf="!eventdate.valid">
       <p *ngIf="eventdate.errors.required" class="error">Event Date is required.</p>
-    </div> -->
+    </div>
   
     <label>Street:</label>
     <input
@@ -49,9 +47,9 @@
     [(ngModel)]="newEvent.street"
     #eventstreet="ngModel"
     /> 
-    <!-- <div *ngIf="!eventstreet.valid">
+    <div *ngIf="!eventstreet.valid">
       <p *ngIf="eventstreet.errors.required" class="error">Event Street is required.</p>
-    </div> -->
+    </div>
   
     <label>City:</label>
     <input
@@ -61,9 +59,9 @@
     [(ngModel)]="newEvent.city"
     #eventcity="ngModel"
     /> 
-    <!-- <div *ngIf="!eventcity.valid">
+    <div *ngIf="!eventcity.valid">
       <p *ngIf="eventcity.errors.required" class="error">Event City is required.</p>
-    </div> -->
+    </div>
   
     <label>State:</label>
     <input
@@ -73,9 +71,9 @@
     [(ngModel)]="newEvent.state"
     #eventstate="ngModel"
     /> 
-    <!-- <div *ngIf="!eventstate.valid">
+    <div *ngIf="!eventstate.valid">
       <p *ngIf="eventstate.errors.required" class="error">Event State is required.</p>
-    </div> -->
+    </div>
   
     <label>Zip:</label>
     <input
@@ -85,9 +83,9 @@
     [(ngModel)]="newEvent.zip"
     #eventzip="ngModel"
     /> 
-    <!-- <div *ngIf="!eventzip.valid">
+    <div *ngIf="!eventzip.valid">
       <p *ngIf="eventzip.errors.required" class="error">Event Zip is required.</p>
-    </div> -->
+    </div>
   
     <button type="submit" class="btn btn-info form-control">Add New Greetup</button>
   </form>
@@ -95,35 +93,3 @@
   <h5 *ngIf="error">{{error}}</h5>
   <h5>{{errors}}</h5>
 </div>
-
-<!-- NOTES: ADDING FRONT END VALIDATIONS PREVENTS FROM ADDING GREETUP -->
-<form (submit)="sendToGeocode()">
-
-  <label>Event Name:
-    <input type="text" name="name" [(ngModel)]="newEvent.name" #event="ngModel" /> </label>
-
-  <label>Event Description:
-    <input type="text" name="description" [(ngModel)]="newEvent.description" #eventdescription="ngModel" /> </label>
-
-    <label>Date:
-      <input type="date" name="date" [(ngModel)]="newEvent.date" #eventdate="ngModel" /> </label>
-
-
-  <label>Street:
-    <input type="text" name="street" [(ngModel)]="newEvent.street" #eventstreet="ngModel" /> </label>
-
-  <label>City:
-    <input type="text" name="city" [(ngModel)]="newEvent.city" #eventcity="ngModel" /> </label>
-
-  <label>State:
-    <input type="text" name="state" [(ngModel)]="newEvent.state" #eventstate="ngModel" /> </label>
-
-  <label>Zip:
-    <input type="number" name="zip" [(ngModel)]="newEvent.zip" #eventzip="ngModel" /> </label>
-
-  <button type="submit" class="btn btn-info">Add this Event to Greetup</button>
-</form>
-<button type="button" [routerLink]="['/home']" class="btn btn-danger">Cancel</button>
-<h5 *ngIf="error">{{error}}</h5>
-
-<h5>{{errors}}</h5>

@@ -1,16 +1,29 @@
 <app-banner></app-banner>
-<div id="viewevent" class="container col-md-6">
+<div id="viewevent" class="container">
     <h1>{{event.name}}</h1>
     <p>{{ event.date | date: 'MMMM dd, yyyy' }}</p>
 </div>
 <div id="viewevent-more" class="container-fluid">
-    <div id="viewevent-details" class="container col-md-6">
-        <br>
-        <h3>Details</h3>
-        <p>WHERE: {{ event.street }}, {{ event.city }}, {{ event.state }} {{ event.zip }}</p>
-        <p>DESCRIPTION: {{ event.description }}</p>
-
-        <button type="button" (click)="likeEvent()" class="btn btn-info btn-view" [disabled]="isClickedOnce==true">Attend {{event.likes}}</button>
-        <button [routerLink]="['/editevent', event._id]" value="{{event._id}}" class="btn btn-info btn-view">Edit</button>
+    <div id="viewevent-wrapper" class="container">
+        <div id="viewevent-details">
+            <br>
+            <h3>Greetup Details</h3>
+            <p>DESCRIPTION: {{ event.description }}</p>
+            <img src="https://source.unsplash.com/collection/770996/600x300" alt="Random" class="placeholder">
+            <br>
+            <div id="view-btns">
+                <button type="button" (click)="likeEvent()" class="btn btn-info btn-view btn-pink col-md-5" [disabled]="isClickedOnce==true">Attend {{event.likes}}</button>
+                <button [routerLink]="['/editevent', event._id]" value="{{event._id}}" class="btn btn-info btn-view btn-pink col-md-5">Edit</button>
+            </div>
+        </div>
+        <div id="view-map">
+            <div id="view-where">
+                <h5 class="pinktext">WHERE:</h5>
+                <p class="pinktext">{{ event.street }}, {{ event.city }}, {{ event.state }} {{ event.zip }}</p> 
+            </div>
+            <div id="view-gm">
+                <app-map></app-map>
+            </div>
+        </div>
     </div>
 </div>

@@ -15,10 +15,12 @@ import { EditeventComponent } from './editevent/editevent.component';
 import { VieweventComponent } from './viewevent/viewevent.component';
 import { BannerComponent } from './banner/banner.component';
 import { MapComponent } from './map/map.component';
+import { ChatComponent } from './chat/chat.component';
 
 // import { PersistenceModule } from 'angular-persistence';
 import { AgmCoreModule } from '@agm/core';
 import { MapService } from './map.service';
+import { ChatService } from './chat.service';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { MapService } from './map.service';
     EditeventComponent,
     VieweventComponent,
     BannerComponent,
-    MapComponent
+    MapComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,11 @@ import { MapService } from './map.service';
       libraries: ["places"]
     })
   ],
-  providers: [HttpService, MapService],
+  providers: [
+    HttpService,
+    MapService,
+    ChatService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

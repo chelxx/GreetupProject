@@ -48,7 +48,7 @@ export class AddeventComponent implements OnInit {
         console.log("GOT TO ADD EVENT 3");
         this.newEvent = {name: "", description: "", street: "", city: "", state:"", zip: Number , date: Date, lat: Number, lng: Number }
         console.log("GOT TO ADD EVENT 4");
-        this._router.navigate(['home']);
+        this._router.navigate(['/home']);
       }
       else{
         this.error = data['error']['message'];
