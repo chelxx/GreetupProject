@@ -2,9 +2,9 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
+import { HttpService } from '../http.service';
 
-import markers from './markers';
-import { Marker } from '@agm/core/services/google-maps-types';
+// import { Marker } from '@agm/core/services/google-maps-types';
 
 @Component({
   selector: 'app-map',
@@ -19,18 +19,19 @@ export class MapComponent implements OnInit {
   public zoom: number;
   public formatted_address: string;
 
-  public markers: Marker[];
-  
+  // public markers: Marker[];
+  markers;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone, private _httpService: HttpService) { }
 
   ngOnInit() {
     //set google maps defaults
+    this.getEvents();
     this.zoom = 14;
     this.latitude = 41.8781,
     this.longitude = -87.6298;
@@ -70,6 +71,16 @@ export class MapComponent implements OnInit {
         });
       });
     });
+  }
+
+  
+  getEvents(): void {
+    console.log("Got to getevents in home.ts");
+    var observable = this._httpService.getEvents();
+    observable.subscribe(data => {
+      this.markers = data['events'];
+      console.log("list of markers:", this.markers)
+    })
   }
 
   private setCurrentPosition() {
