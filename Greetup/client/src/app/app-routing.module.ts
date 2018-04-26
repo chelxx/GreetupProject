@@ -8,6 +8,7 @@ import { AddeventComponent } from './addevent/addevent.component';
 import { EditeventComponent } from './editevent/editevent.component';
 import { VieweventComponent } from './viewevent/viewevent.component';
 import { BannerComponent } from './banner/banner.component';
+import { MapComponent } from './map/map.component';
 // END IMPORT ROUTING
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'editevent/:id', component: EditeventComponent },
   { path: 'greetup/:id', component: VieweventComponent },
   { path: 'banner', component: BannerComponent },
+  { path: 'map', component: MapComponent},
   { path: '', pathMatch:'full', component: LoginregComponent }
 ];
 

@@ -94,9 +94,43 @@
       <p *ngIf="edeventzip.errors.required" class="error">Event Name is required.</p>
     </div>
 
+<<<<<<< HEAD
     <button type="submit" class="btn btn-info form-control">Edit Greetup</button>
   </form>
   <h5 *ngIf="error">{{error}}</h5>
   
   <h5>{{errors}}</h5>
 </div>
+=======
+
+<form (submit)="sendToGeocode()">
+
+  <label>Event Name:
+    <input type="text" name="name" [(ngModel)]="edEvent.name" #edevent="ngModel" /> </label>
+
+  <label>Event Description:
+    <input type="text" name="description" [(ngModel)]="edEvent.description" #edeventdescription="ngModel" /> </label>
+
+    <label>Date:
+      <input type="date" name="date" [(ngModel)]="edEvent.date" #edeventdate="ngModel" /> </label>
+
+
+  <label>Street:
+    <input type="text" name="street" [(ngModel)]="edEvent.street" #edeventstreet="ngModel" /> </label>
+
+  <label>City:
+    <input type="text" name="city" [(ngModel)]="edEvent.city" #edeventcity="ngModel" /> </label>
+
+  <label>State:
+    <input type="text" name="state" [(ngModel)]="edEvent.state" #edeventstate="ngModel" /> </label>
+
+  <label>Zip:
+    <input type="number" name="zip" [(ngModel)]="edEvent.zip" #edeventzip="ngModel" /> </label>
+
+  <button type="submit" class="btn btn-info">Edit your event on Greetup</button>
+</form>
+<button type="button" [routerLink]="['/home']" class="btn btn-danger">Cancel</button>
+<h5 *ngIf="error">{{error}}</h5>
+
+<h5>{{errors}}</h5>
+>>>>>>> 3655e3e465460e24d56b7d21d029fb54cc822a9f
