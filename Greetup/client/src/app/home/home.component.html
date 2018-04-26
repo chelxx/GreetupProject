@@ -2,21 +2,34 @@
 <div id="homebanner" class="container-fluid">
   <div id="homebanner-words">
     <h2>Find a Greetup</h2>
-    <h6>{{ events.length }} Greetups available</h6>
+    <!-- <h6>{{ events.length }} Greetups available</h6> -->
   </div>
 </div>
 <div class="container">
   <div id="home" class="col-md-8">
-      <div *ngFor="let e of events" class="homeeventbox">
-        <h3>{{ e.name }}</h3>
-        <p>DATE: {{ e.date | date: 'MMMM dd, yyyy' }}</p>
-        <p>TIME: {{ e.date | date: 'HH:MM a'}}</p>
-        <p>LOCATION: {{ e.street }}, {{ e.city }}, {{ e.state }}, {{ e.zip }}</p>
-        <button [routerLink]="['/greetup', e._id]" value="{{e._id}}" class="btn btn-info btn-sm btn-pink form-control btn-view">VIEW GREETUP</button>
-      </div>
+    <div *ngFor="let e of events" class="homeeventbox">
+      <h3>{{ e.name }}</h3>
+      <p>DATE: {{ e.date | date: 'MMMM dd, yyyy' }}</p>
+      <p>TIME: {{ e.date | date: 'HH:MM a'}}</p>
+      <p>LOCATION: {{ e.street }}, {{ e.city }}, {{ e.state }}, {{ e.zip }}</p>
+      <button [routerLink]="['/greetup', e._id]" value="{{e._id}}" class="btn btn-info btn-sm btn-pink form-control btn-view">VIEW GREETUP</button>
+    </div>
   </div>
   <div id="home-map">
     <app-map></app-map>
   </div>
-  
+
+  <!-- SEARCH FEATURE WIP 
+    <div id="searchdatasp">
+    <form>
+      <mat-form-field>
+        <input type="text" placeholder="Search GreetUps!" matInput [formControl]="searchControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let e of filteredOptions | async" [value]="e.name">
+            {{ e.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div> -->
 </div>

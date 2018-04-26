@@ -23,8 +23,8 @@
     [(ngModel)]="newEvent.description"
     #eventdescription="ngModel"
     />
-    <div *ngIf="!eventdscription.valid">
-      <p *ngIf="eventdscription.errors.required" class="error">Event Description is required.</p>
+    <div *ngIf="!eventdescription.valid">
+      <p *ngIf="eventdescription.errors.required" class="error">Event Description is required.</p>
     </div>
   
     <label>Date and Time:</label>
