@@ -52,7 +52,7 @@ export class EditeventComponent implements OnInit {
     let observable = this._httpService.editEvent(this.eventID, this.edEvent);
     observable.subscribe(data => {
       if (data['message'] == "Success!") {
-        this._router.navigate(['/home']);
+        this._router.navigate(['home']);
       }
       else {
         this.error = data['error']['message'];
