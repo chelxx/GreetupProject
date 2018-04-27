@@ -7,9 +7,9 @@ import { HttpService } from './http.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {MatInputModule} from '@angular/material/input';
-import {MatTableModule} from '@angular/material/table';
+// import { MatAutocompleteModule } from '@angular/material/autocomplete';
+// import {MatInputModule} from '@angular/material/input';
+// import {MatTableModule} from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -22,8 +22,8 @@ import { BannerComponent } from './banner/banner.component';
 import { MapComponent } from './map/map.component';
 import { ChatComponent } from './chat/chat.component';
 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+import { Ng2CompleterModule } from "ng2-completer";
 // import { PersistenceModule } from 'angular-persistence';
 import { AgmCoreModule } from '@agm/core';
 import { MapService } from './map.service';
@@ -50,10 +50,11 @@ import { ChatService } from './chat.service';
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
-    Ng2SearchPipeModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    MatTableModule,
+    // Ng2SearchPipeModule,
+    Ng2CompleterModule,
+    // MatAutocompleteModule,
+    // MatInputModule,
+    // MatTableModule,
     BrowserAnimationsModule,
     // PersistenceModule,
 
