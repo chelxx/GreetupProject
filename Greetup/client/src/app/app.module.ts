@@ -22,8 +22,8 @@ import { BannerComponent } from './banner/banner.component';
 import { MapComponent } from './map/map.component';
 import { ChatComponent } from './chat/chat.component';
 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+import { Ng2CompleterModule } from "ng2-completer";
 // import { PersistenceModule } from 'angular-persistence';
 import { AgmCoreModule } from '@agm/core';
 import { MapService } from './map.service';
@@ -50,7 +50,8 @@ import { ChatService } from './chat.service';
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
-    Ng2SearchPipeModule,
+    // Ng2SearchPipeModule,
+    Ng2CompleterModule,
     MatAutocompleteModule,
     MatInputModule,
     MatTableModule,
