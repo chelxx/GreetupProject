@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import {MatTableDataSource} from '@angular/material';
-
+import { CompleterService, CompleterData } from 'ng2-completer';
  
 @Component({
   selector: 'app-home',
@@ -14,39 +14,39 @@ import {MatTableDataSource} from '@angular/material';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  searchControl: FormControl = new FormControl();
   events;
   name;
-
-  filteredOptions: Observable<string[]>;
+  protected searchStr: string;
+  protected dataService: CompleterData;
+  // searchData = [{name:"froommm", _id
+  // :"5ae2479d7e9ca632a7c21d67"}];
+  searchData;
   
-  constructor(private _httpService: HttpService, private _router: Router, private _route: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.getEvents();
-    this.filteredOptions = this.searchControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(val => this.filter(val))
-      );
-      console.log("home comp ngOnInt filtered options")
-    // this.name = this._httpService.getUser();
-    // console.log("HOME INIT!!!!",this.name);
-    this.name = localStorage.getItem('sessionName');
-    
-  }
-  getEvents(): void {
-    console.log("Got to getevents in home.ts");
+  constructor(private _httpService: HttpService, private _router: Router, private _route: ActivatedRoute, private completerService: CompleterService) { 
     var observable = this._httpService.getEvents();
     observable.subscribe(data => {
       this.events = data['events'];
-      console.log("list of events:", this.events)
+      this.searchData = data['events'];
+      console.log("list of events:", this.searchData)
+      this.dataService = completerService.local(this.searchData, 'name', 'name');
     })
+    
   }
 
-  filter(val: string): string[] {
-    return this.events.filter(event =>
-      event.toLowerCase().indexOf(val.toLowerCase()) === 0);
-      
+  ngOnInit() {
+    // this.getEvents();
+    // this.name = this._httpService.getUser();
+    // console.log("HOME INIT!!!!",this.name);
+    //this.name = localStorage.getItem('sessionName');
+    //this.searchData = this.events;
   }
+  // getEvents(): void {
+  //   console.log("Got to getevents in home.ts");
+  //   var observable = this._httpService.getEvents();
+  //   observable.subscribe(data => {
+  //     this.events = data['events'];
+  //     this.searchData = data['events'];
+  //     console.log("list of events:", this.searchData)
+  //   })
+  // }
 }
