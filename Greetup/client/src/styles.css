@@ -91,14 +91,33 @@ div#home {
     display: inline-block;
 }
 div#home-map {
+    margin-top: 10px;
     display: inline-block;    
     overflow: hidden;
     border-radius: 50%;
-    position: relative;
+    position: fixed;
     z-index: 99;
     height: 350px;
     width: 350px;
     border: 3px solid rgb(235, 66, 136);
+}
+div#searchdatasp {
+    height: 75px;
+    background-color: rgb(78, 78, 78);
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    /* border-radius: 8px; */
+    position: relative;
+}
+div#searchdatasp-inner {
+    color: white;
+    padding: auto;
+}
+div#searchdatasp-inner input {
+    padding: 10px;
+    width: 400px;
+    border-radius: 10px;
 }
 /* END OF HOME COMPONENT */
 
@@ -113,6 +132,9 @@ div#greetupbanner img {
 /* END OF BANNER COMPONENT */
 
 /* VIEW EVENT COMPONENT */
+div#viewevent {
+    padding-left: 30px;
+}
 div#viewevent-more {
     background-color: rgb(243, 243, 243);
     height: 100vh;
@@ -168,6 +190,9 @@ div#view-btns {
     display: block;
     text-align: center;
 }
+div#view-chat {
+   
+}
 /* END OF VIEW COMPONENT */
 
 /* ADD EVENT COMPONENT */
@@ -177,4 +202,41 @@ div#balloons {
     overflow: hidden;
     background-size: 100% 100%;
 }
+div#balloons h1 {
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 110px;
+    font-size: 80px;
+    opacity: 0.8;
+}
 /* END OF ADD EVENT COMPONENT */
+
+/* CHAT COMPONENT */
+button#joinchat {
+    background-color: rgb(235, 66, 136);
+    border: 2px solid rgb(235, 66, 136);
+    border-radius: 0px;
+    color: white;
+    border: none;
+    border-bottom-left-radius: 10px;
+    
+}
+button#leavechat {
+    background: transparent;
+    border: 2px solid rgb(235, 66, 136);
+    color: rgb(235, 66, 136);
+    border-radius: 0px;
+    border-bottom-right-radius: 10px;
+}
+strong {
+    color: rgb(78, 78, 78);
+}
+button#sendchat {
+    background-color: rgb(235, 66, 136);
+    border: 2px solid rgb(235, 66, 136);
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+/* END OF CHAT COMPONENT */

@@ -35,6 +35,7 @@ export class ChatComponent {
 
   sendMessage() {
     this._chatService.sendMessage({ user: this.user, room: this.room, message: this.messageText });
+    this.messageText = ""; 
   }
 
 }

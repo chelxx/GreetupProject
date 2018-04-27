@@ -16,8 +16,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getEvents();
-    // this.name = this._httpService.getUser();
-    // console.log("HOME INIT!!!!",this.name);
     this.name = localStorage.getItem('sessionName');
   }
   getEvents(): void {

@@ -1,8 +1,13 @@
 <app-banner></app-banner>
 <div id="homebanner" class="container-fluid">
   <div id="homebanner-words">
-    <h2>Find a Greetup</h2>
-    <h6>{{ events.length }} Greetups available</h6>
+    <h1>Find a Greetup</h1>
+    <h5>{{ events.length }} Greetups available</h5>
+  </div>
+</div>
+<div id="searchdatasp" class="container-fluid">
+  <div id="searchdatasp-inner">
+    <input type="text" id="searchbox" placeholder="SEARCH GOES HERE">
   </div>
 </div>
 <div class="container">
@@ -10,7 +15,7 @@
       <div *ngFor="let e of events" class="homeeventbox">
         <h3>{{ e.name }}</h3>
         <p>DATE: {{ e.date | date: 'MMMM dd, yyyy' }}</p>
-        <p>TIME: {{ e.date | date: 'HH:MM a'}}</p>
+        <p>TIME: {{ e.date | date: 'hh:mm a'}}</p>
         <p>LOCATION: {{ e.street }}, {{ e.city }}, {{ e.state }}, {{ e.zip }}</p>
         <button [routerLink]="['/greetup', e._id]" value="{{e._id}}" class="btn btn-info btn-sm btn-pink form-control btn-view">VIEW GREETUP</button>
       </div>
@@ -18,5 +23,4 @@
   <div id="home-map">
     <app-map></app-map>
   </div>
-  
 </div>

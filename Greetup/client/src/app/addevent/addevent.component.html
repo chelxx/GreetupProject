@@ -1,5 +1,7 @@
 <app-banner></app-banner>
-<div id="balloons" class="container-fluid"></div>
+<div id="balloons" class="container-fluid">
+  <h1>Create a Greetup</h1>
+</div>
 <div id="addevent" class="container col-md-5">
   <br>
   <form (submit)="sendToGeocode()" #addGreetupForm="ngForm">
@@ -23,8 +25,8 @@
     [(ngModel)]="newEvent.description"
     #eventdescription="ngModel"
     />
-    <div *ngIf="!eventdscription.valid">
-      <p *ngIf="eventdscription.errors.required" class="error">Event Description is required.</p>
+    <div *ngIf="!eventdescription.valid">
+      <p *ngIf="eventdescription.errors.required" class="error">Event Description is required.</p>
     </div>
   
     <label>Date and Time:</label>

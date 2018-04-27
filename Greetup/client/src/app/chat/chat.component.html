@@ -1,45 +1,26 @@
-<div class="container-fluid">
-    <div class="row">
-        <h2>Realtime Chat Application</h2>
-        <hr>
-    </div>
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" [(ngModel)]="user" class="form-control" id="username" placeholder="Enter username">
-                <!-- <small id="userHelp" class="form-text text-muted">Type your username.</small> -->
-            </div>
-        </div>
-        <div class="col-sm-5">
-            <label for="roomInput">Choose room</label>
-            <select name="roomInput" id="roomInput" class="form-control" [(ngModel)]="room">
-                <option value="Lobby">Lobby</option>
-                <option value="Hall">Hall</option>
-                <option value="Deluxe">Deluxe</option>
-            </select>
-        </div>
-        <div class="col sm-2">
-            <div style="margin-top:19px;" class="pull-right"> 
-                <button type="button" class="btn btn-primary" (click)="join()">Join</button>
-                <button type="button" class="btn btn-default" (click)="leave()">Leave</button>
-            </div>
-        </div>
-    </div>
+<div class="container">
+    <nav id="chatnav" class="row">
+        <input type="text" [(ngModel)]="user" class="form-control" id="username" placeholder="Enter Your Chat Handle">
+        <button id="joinchat" type="button" class="btn btn-primary col-md-6" (click)="join()">JOIN</button>
+        <button id="leavechat" type="button" class="btn btn-default col-md-6" (click)="leave()">LEAVE</button>
+    </nav>
 
     <div class="row">
         <div class="well" style="height:200px; padding:15px;">
-            <div *ngFor="let item of messageArray">
-            <span><strong>{{item.user}} : </strong> {{item.message}}</span>
+            <div *ngFor="let item of messageArray"  style="text-align: left;">
+                <span class="pinktext" style="text-align: left;"><strong style="text-align: left;">{{item.user}} : </strong> {{item.message}}</span>
             </div>
         </div>
     </div>
+    <form (submit)="sendMessage()">
     <div class="row">
         <div class="col-sm-10">
-            <input type="text" class="form-control" [(ngModel)]="messageText">            
+            <input type="text" class="form-control" [(ngModel)]="messageText" placeholder="Your Message Here...">            
         </div>
         <div class="col-sm-2">
-                <button type="button" class="btn btn-success pull-right" (click)="sendMessage()">Send</button>
+            <button id="sendchat" type="submit" class="btn">Send</button>
         </div>
     </div>
+</form>
 </div>
+
