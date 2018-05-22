@@ -31,7 +31,7 @@
   
     <label>Date:</label>
     <input
-    type="date"
+    type="datetime-local"
     name="date"
     class="form-control"
     required
@@ -39,7 +39,7 @@
     #edeventdate="ngModel"
     />
     <div *ngIf="!edeventdate.valid">
-      <p *ngIf="edeventdate.errors.required" class="error">Event Name is required.</p>
+      <p *ngIf="edeventdate.errors.required" class="error">Event Date is required.</p>
     </div>
   
     <label>Street:</label>

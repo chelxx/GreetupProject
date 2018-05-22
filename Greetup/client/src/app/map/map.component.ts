@@ -52,7 +52,7 @@ export class MapComponent implements OnInit {
       console.log("list of markers:", this.markers)
     })
   }
-  // TO DO: try to use this function for additional feature: 'find events near you"
+  // TODO: try to use this function for additional feature: 'find events near you"
   // private setCurrentPosition() {
   //   if ("geolocation" in navigator) {
   //     navigator.geolocation.getCurrentPosition((position) => {

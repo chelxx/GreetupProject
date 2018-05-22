@@ -236,7 +236,9 @@ app.post('/api/logout', function (req, res) {
 
 // 1. Get all events
 app.get('/events', function (req, res) {
-    Event.find().sort({ date:1 }).exec( function (err, events) {
+    var today = new Date();
+    today.setDate = Date.now;
+    Event.find({date: {$gte: today}}).sort({ date:1 }).exec( function (err, events) {
         if (err) {
             console.log("Returned Error", err);
             res.json({ error: err })
@@ -279,7 +281,6 @@ app.post('/api/events', function (req, res) {
 
 // 4. Update event by ID
 app.put('/api/editEvent/:id/', function (req, res) {
-
     Event.findByIdAndUpdate({_id: req.params.id},
     req.body, {new: true}, function(err, event){
         if(err){
