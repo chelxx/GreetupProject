@@ -7,7 +7,7 @@
 </div>
 <div id="searchdatasp" class="container-fluid">
   <div id="searchdatasp-inner">
-    <ng2-completer placeholder="Search GreetUps!" [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" ></ng2-completer> 
+    <ng2-completer (selected)="onItemSelect($event)" placeholder="Search GreetUps!" [(ngModel)]="searchStr" [datasource]="dataService" [minSearchLength]="0" ></ng2-completer> 
   </div>
 </div>
 <div class="container">

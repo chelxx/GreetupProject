@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 // import {MatTableDataSource} from '@angular/material';
-import { CompleterService, CompleterData } from 'ng2-completer';
+import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
  
 @Component({
   selector: 'app-home',
@@ -34,8 +34,18 @@ export class HomeComponent implements OnInit {
     
   }
 
-  // value = '';
-  // onEnter(value: string) { this.value = value; }
+  onItemSelect(selected:CompleterItem){  
+    console.log("*******  HELLOOO ******", this)
+    if(selected){
+      console.log('selected', selected);
+      console.log('selected.originalObject', selected.originalObject);
+      console.log('selected.originalObject._id', selected.originalObject._id);
+      const id = selected.originalObject._id;
+      console.log("**** id *****", id)
+      this._router.navigate(['/greetup', id]);
+    }
+
+  }  
   // onItemSelect(selected:CompleterData){
   //   if(selected)
   //     this.searchStr = selected.events._id; 
