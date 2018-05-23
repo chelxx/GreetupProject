@@ -17,21 +17,27 @@ export class HomeComponent implements OnInit {
   events;
   name;
   protected searchStr: string;
-  protected dataService: CompleterData;
+  protected datasource: CompleterData;
   // searchData = [{name:"froommm", _id
   // :"5ae2479d7e9ca632a7c21d67"}];
   searchData;
-  
+
   constructor(private _httpService: HttpService, private _router: Router, private _route: ActivatedRoute, private completerService: CompleterService) { 
     var observable = this._httpService.getEvents();
     observable.subscribe(data => {
       this.events = data['events'];
+      console.log("all events", this.events);
       this.searchData = data['events'];
       console.log("list of events:", this.searchData)
-      this.dataService = completerService.local(this.searchData, 'name', 'name');
+      this.datasource = completerService.local(this.searchData, 'name', 'name');
     })
     
   }
+
+  // onItemSelect(selected:CompleterData){
+  //   if(selected)
+  //     this.searchStr = selected.search._id; 
+  // }
 
   ngOnInit() {
     // this.getEvents();

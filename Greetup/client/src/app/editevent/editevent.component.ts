@@ -59,7 +59,7 @@ export class EditeventComponent implements OnInit {
       }
     })
   }
-
+// TODO: restrict deletion to user who created event
   deleteEvent(eventID): void {
     let observable = this._httpService.deleteEvent(this.eventID);
     observable.subscribe(data => {

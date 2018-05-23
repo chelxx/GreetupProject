@@ -234,7 +234,7 @@ app.post('/api/logout', function (req, res) {
 // ******************** //
 // START OF CRUD EVENT ROUTES
 
-// 1. Get all events
+// 1. Get all events : filtered for current events
 app.get('/events', function (req, res) {
     var today = new Date();
     today.setDate = Date.now;
