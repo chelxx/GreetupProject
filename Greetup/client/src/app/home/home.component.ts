@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 // import {MatTableDataSource} from '@angular/material';
-import { CompleterService, CompleterData } from 'ng2-completer';
+import { CompleterService, CompleterData, CompleterItem } from 'ng2-completer';
  
 @Component({
   selector: 'app-home',
@@ -21,17 +21,35 @@ export class HomeComponent implements OnInit {
   // searchData = [{name:"froommm", _id
   // :"5ae2479d7e9ca632a7c21d67"}];
   searchData;
-  
+
   constructor(private _httpService: HttpService, private _router: Router, private _route: ActivatedRoute, private completerService: CompleterService) { 
     var observable = this._httpService.getEvents();
     observable.subscribe(data => {
       this.events = data['events'];
+      console.log("all events", this.events);
       this.searchData = data['events'];
       console.log("list of events:", this.searchData)
       this.dataService = completerService.local(this.searchData, 'name', 'name');
     })
     
   }
+
+  onItemSelect(selected:CompleterItem){  
+    console.log("*******  HELLOOO ******", this)
+    if(selected){
+      console.log('selected', selected);
+      console.log('selected.originalObject', selected.originalObject);
+      console.log('selected.originalObject._id', selected.originalObject._id);
+      const id = selected.originalObject._id;
+      console.log("**** id *****", id)
+      this._router.navigate(['/greetup', id]);
+    }
+
+  }  
+  // onItemSelect(selected:CompleterData){
+  //   if(selected)
+  //     this.searchStr = selected.events._id; 
+  // }
 
   ngOnInit() {
     // this.getEvents();

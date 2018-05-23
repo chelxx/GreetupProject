@@ -1,6 +1,9 @@
 <app-banner></app-banner>
 <div id="editevent" class="container col-md-6">
   <h1>Edit Greetup Details</h1>
+  <div>
+      <button type="submit" class="btn btn-info form-control" ><a (click)="deleteEvent()" style="color: rgb(255, 255, 255)">Delete Greetup</a></button>
+  </div>
   <form (submit)="sendToGeocode()" #editGreetupForm="ngForm">
   
     <label>Event Name:</label>
@@ -31,7 +34,7 @@
   
     <label>Date:</label>
     <input
-    type="date"
+    type="datetime"
     name="date"
     class="form-control"
     required
@@ -39,7 +42,7 @@
     #edeventdate="ngModel"
     />
     <div *ngIf="!edeventdate.valid">
-      <p *ngIf="edeventdate.errors.required" class="error">Event Name is required.</p>
+      <p *ngIf="edeventdate.errors.required" class="error">Event Date is required.</p>
     </div>
   
     <label>Street:</label>
