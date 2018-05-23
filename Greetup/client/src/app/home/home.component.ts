@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   events;
   name;
   protected searchStr: string;
-  protected datasource: CompleterData;
+  protected dataService: CompleterData;
   // searchData = [{name:"froommm", _id
   // :"5ae2479d7e9ca632a7c21d67"}];
   searchData;
@@ -29,14 +29,16 @@ export class HomeComponent implements OnInit {
       console.log("all events", this.events);
       this.searchData = data['events'];
       console.log("list of events:", this.searchData)
-      this.datasource = completerService.local(this.searchData, 'name', 'name');
+      this.dataService = completerService.local(this.searchData, 'name', 'name');
     })
     
   }
 
+  // value = '';
+  // onEnter(value: string) { this.value = value; }
   // onItemSelect(selected:CompleterData){
   //   if(selected)
-  //     this.searchStr = selected.search._id; 
+  //     this.searchStr = selected.events._id; 
   // }
 
   ngOnInit() {

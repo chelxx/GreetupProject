@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@angular/core": "^6.0.3",
     "angular-persistence": "^1.0.1",
     "bcrypt": "^2.0.1",
     "bcrypt-as-promised": "^1.1.0",
@@ -19,5 +20,8 @@
     "mongoose": "^5.0.16",
     "path": "^0.12.7",
     "socket.io": "^2.1.0"
+  },
+  "devDependencies": {
+    "@angular/cli": "^6.0.3"
   }
 }
